@@ -19,6 +19,8 @@
 		FC3BB27E1CD4E8C60073875F /* MedsProUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3BB27D1CD4E8C60073875F /* MedsProUITests.swift */; };
 		FC8D7C751CF1E9F000FB5E53 /* ReminderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8D7C741CF1E9F000FB5E53 /* ReminderCell.swift */; };
 		FC8D7C771CF1EA8A00FB5E53 /* AddMedicineController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8D7C761CF1EA8A00FB5E53 /* AddMedicineController.swift */; };
+		FC8D7C791CF2093100FB5E53 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8D7C781CF2093100FB5E53 /* PhotoViewController.swift */; };
+		FC8D7C7B1CF20C4C00FB5E53 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8D7C7A1CF20C4C00FB5E53 /* PhotoCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,8 @@
 		FC3BB27F1CD4E8C60073875F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FC8D7C741CF1E9F000FB5E53 /* ReminderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderCell.swift; sourceTree = "<group>"; };
 		FC8D7C761CF1EA8A00FB5E53 /* AddMedicineController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMedicineController.swift; sourceTree = "<group>"; };
+		FC8D7C781CF2093100FB5E53 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
+		FC8D7C7A1CF20C4C00FB5E53 /* PhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +122,8 @@
 				FC19922A1CF0C61C00588B9C /* DayCell.swift */,
 				FC8D7C741CF1E9F000FB5E53 /* ReminderCell.swift */,
 				FC8D7C761CF1EA8A00FB5E53 /* AddMedicineController.swift */,
+				FC8D7C781CF2093100FB5E53 /* PhotoViewController.swift */,
+				FC8D7C7A1CF20C4C00FB5E53 /* PhotoCell.swift */,
 			);
 			path = MedsPro;
 			sourceTree = "<group>";
@@ -278,10 +284,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC3BB2631CD4E8C60073875F /* MedsPro.xcdatamodeld in Sources */,
+				FC8D7C7B1CF20C4C00FB5E53 /* PhotoCell.swift in Sources */,
 				FC8D7C751CF1E9F000FB5E53 /* ReminderCell.swift in Sources */,
 				FC1992271CF0C4F500588B9C /* AddReminderViewController.swift in Sources */,
 				FC19922B1CF0C61C00588B9C /* DayCell.swift in Sources */,
 				FC3BB25B1CD4E8C60073875F /* AppDelegate.swift in Sources */,
+				FC8D7C791CF2093100FB5E53 /* PhotoViewController.swift in Sources */,
 				FC8D7C771CF1EA8A00FB5E53 /* AddMedicineController.swift in Sources */,
 				FC1992291CF0C50E00588B9C /* Reminder.swift in Sources */,
 			);

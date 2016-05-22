@@ -8,18 +8,23 @@
 
 import UIKit
 
-class AddMedicineController: UIViewController, addDayDelegate {
+private let resuseIdentifier = "PhotoCellIdentifier"
+
+class AddMedicineController: UIViewController, addDayDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     var currentReminder: NSMutableArray
+    var photoList: NSMutableArray?
     var segmentedControlValue = "Before Meal"
     
     
     required init?(coder aDecoder: NSCoder){
         self.currentReminder = NSMutableArray()
+        self.photoList = NSMutableArray()
         super.init(coder: aDecoder)        
     }
 
     
+    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var medNameLabel: UITextField!
     @IBOutlet weak var medStrengthLabel: UITextField!
@@ -44,6 +49,46 @@ class AddMedicineController: UIViewController, addDayDelegate {
             break
         }
     }
+    
+    @IBAction func addPhoto(sender: AnyObject) {
+        let imagePicker: UIImagePickerController = UIImagePickerController()
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera){
+            imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
+        }
+        else{
+            imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        }
+        imagePicker.delegate = self
+        navigationController!.presentViewController(imagePicker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        let dict = info as NSDictionary
+        let img: UIImage? = dict.objectForKey(UIImagePickerControllerOriginalImage) as? UIImage
+        if img != nil{
+            photoList!.addObject(img!)
+            collectionView?.reloadData()
+        }
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int{
+        return 1
+    }
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
+        return photoList!.count
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> PhotoCell{
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(resuseIdentifier, forIndexPath: indexPath) as! PhotoCell
+        let img = photoList!.objectAtIndex(indexPath.row)
+        cell.photoView!.image = img as? UIImage
+        return cell
+    }
+    
+  
+    
     
     
     @IBAction func saveButton(sender: AnyObject) {
@@ -98,18 +143,21 @@ class AddMedicineController: UIViewController, addDayDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "addReminderSegue"
         {
-            let vcontroller: AddReminderViewController = segue.destinationViewController as! AddReminderViewController
-            vcontroller.delegate = self
+            let controller: AddReminderViewController = segue.destinationViewController as! AddReminderViewController
+            controller.delegate = self
         }
-    }
-    
+        if segue.identifier == "viewPhotoSegue"{
+            let controller: PhotoViewController  = segue.destinationViewController as! PhotoViewController
+            let indexPath = self.collectionView?.indexPathForCell(sender as! PhotoCell)
+            controller.photoToView = self.photoList?.objectAtIndex(indexPath!.row) as? UIImage
+        }
+}
     
     
     
     
     func addDay(reminder: Reminder) {
         currentReminder.addObject(reminder)
-        print(currentReminder)
         self.tableView.reloadData()
     }
 
