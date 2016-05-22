@@ -172,16 +172,6 @@
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RdQ-vl-HDx">
                                         <rect key="frame" x="531" y="306" width="51" height="31"/>
                                     </switch>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4cT-yY-lQU">
-                                        <rect key="frame" x="20" y="661" width="260" height="31"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="31" id="5z1-jh-aPp"/>
-                                        </constraints>
-                                        <state key="normal" title="Add Photo"/>
-                                        <connections>
-                                            <action selector="addPhoto:" destination="4gX-1J-zAP" eventType="touchUpInside" id="jTP-uP-COm"/>
-                                        </connections>
-                                    </button>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jwl-4K-Avf">
                                         <rect key="frame" x="20" y="406" width="560" height="240"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -231,7 +221,7 @@
                                         </connections>
                                     </button>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="WKv-I2-uSc">
-                                        <rect key="frame" x="340" y="668" width="240" height="152"/>
+                                        <rect key="frame" x="180" y="728" width="240" height="152"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="152" id="ain-ub-mBv"/>
                                             <constraint firstAttribute="width" constant="240" id="ow4-r2-3ke"/>
@@ -243,7 +233,7 @@
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoCellIdentifier" id="4j9-nk-rIP" customClass="PhotoCell" customModule="MedsPro" customModuleProvider="target">
+                                            <collectionViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoCellIdentifier" id="4j9-nk-rIP" customClass="PhotoCell" customModule="MedsPro" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="2" width="238" height="148"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -267,17 +257,9 @@
                                                 </view>
                                                 <constraints>
                                                     <constraint firstItem="193-rM-MbV" firstAttribute="centerX" secondItem="4j9-nk-rIP" secondAttribute="centerX" id="5v9-jP-UzD"/>
-                                                    <constraint firstItem="193-rM-MbV" firstAttribute="top" secondItem="4j9-nk-rIP" secondAttribute="top" id="Itl-YU-m0X"/>
-                                                    <constraint firstAttribute="bottom" secondItem="193-rM-MbV" secondAttribute="bottom" id="gLX-i2-GgU"/>
                                                     <constraint firstItem="193-rM-MbV" firstAttribute="top" secondItem="4j9-nk-rIP" secondAttribute="top" id="gWx-bh-V8D"/>
                                                     <constraint firstAttribute="bottom" secondItem="193-rM-MbV" secondAttribute="bottom" id="lDb-ov-KSw"/>
                                                 </constraints>
-                                                <variation key="default">
-                                                    <mask key="constraints">
-                                                        <exclude reference="Itl-YU-m0X"/>
-                                                        <exclude reference="gLX-i2-GgU"/>
-                                                    </mask>
-                                                </variation>
                                                 <connections>
                                                     <outlet property="photoView" destination="193-rM-MbV" id="OoJ-Eo-GaS"/>
                                                     <segue destination="sIy-YK-eAR" kind="show" identifier="viewPhotoSegue" id="75x-vA-eoc"/>
@@ -289,6 +271,16 @@
                                             <outlet property="delegate" destination="4gX-1J-zAP" id="gy6-6F-6EU"/>
                                         </connections>
                                     </collectionView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4cT-yY-lQU">
+                                        <rect key="frame" x="264" y="663" width="72" height="31"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="31" id="5z1-jh-aPp"/>
+                                        </constraints>
+                                        <state key="normal" title="Add Photo"/>
+                                        <connections>
+                                            <action selector="addPhoto:" destination="4gX-1J-zAP" eventType="touchUpInside" id="jTP-uP-COm"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="10e-zW-Hee" firstAttribute="leading" secondItem="jwl-4K-Avf" secondAttribute="leading" id="3ac-rS-xTe"/>
@@ -298,7 +290,7 @@
                                     <constraint firstItem="VGn-dR-M4h" firstAttribute="trailing" secondItem="ZNb-TZ-jD7" secondAttribute="trailing" id="5lT-tE-Bax"/>
                                     <constraint firstItem="10e-zW-Hee" firstAttribute="top" secondItem="Wkx-r9-viD" secondAttribute="bottom" constant="8" symbolic="YES" id="7TO-kj-cQz"/>
                                     <constraint firstItem="VGn-dR-M4h" firstAttribute="top" secondItem="f9r-WY-UAU" secondAttribute="bottom" constant="35" id="7j9-tc-arT"/>
-                                    <constraint firstAttribute="bottom" secondItem="WKv-I2-uSc" secondAttribute="bottom" constant="76" id="9vU-JZ-MEx"/>
+                                    <constraint firstAttribute="bottom" secondItem="WKv-I2-uSc" secondAttribute="bottom" constant="16" id="9vU-JZ-MEx"/>
                                     <constraint firstItem="2UZ-hv-dje" firstAttribute="leading" secondItem="Ybo-Fc-edp" secondAttribute="leading" id="A9b-Az-u4J"/>
                                     <constraint firstItem="Wkx-r9-viD" firstAttribute="top" secondItem="XxR-iz-yRO" secondAttribute="bottom" constant="8" symbolic="YES" id="C7c-GU-Mnr"/>
                                     <constraint firstItem="XxR-iz-yRO" firstAttribute="top" secondItem="ZNb-TZ-jD7" secondAttribute="bottom" constant="8" symbolic="YES" id="CHp-fK-vCM"/>
@@ -316,18 +308,17 @@
                                     <constraint firstItem="VGn-dR-M4h" firstAttribute="leading" secondItem="ZNb-TZ-jD7" secondAttribute="leading" id="cZg-KH-TlL"/>
                                     <constraint firstItem="f9r-WY-UAU" firstAttribute="top" secondItem="Ybo-Fc-edp" secondAttribute="bottom" constant="8" symbolic="YES" id="cv2-Rv-4Ao"/>
                                     <constraint firstItem="ZNb-TZ-jD7" firstAttribute="top" secondItem="VGn-dR-M4h" secondAttribute="bottom" constant="8" symbolic="YES" id="dRX-eA-02i"/>
-                                    <constraint firstItem="4cT-yY-lQU" firstAttribute="top" secondItem="jwl-4K-Avf" secondAttribute="bottom" constant="15" id="daY-mN-2Mc"/>
-                                    <constraint firstItem="WKv-I2-uSc" firstAttribute="leading" secondItem="4cT-yY-lQU" secondAttribute="trailing" constant="60" id="fFh-mW-ZiA"/>
+                                    <constraint firstItem="4cT-yY-lQU" firstAttribute="top" secondItem="jwl-4K-Avf" secondAttribute="bottom" constant="17" id="daY-mN-2Mc"/>
+                                    <constraint firstItem="4cT-yY-lQU" firstAttribute="centerX" secondItem="jwl-4K-Avf" secondAttribute="centerX" id="ehV-j5-2m2"/>
                                     <constraint firstItem="Ybo-Fc-edp" firstAttribute="top" secondItem="2UZ-hv-dje" secondAttribute="bottom" constant="8" symbolic="YES" id="fYe-rg-nyM"/>
                                     <constraint firstItem="G9l-6x-vVY" firstAttribute="top" secondItem="Wkx-r9-viD" secondAttribute="bottom" constant="65" id="fxV-s0-CG0"/>
                                     <constraint firstItem="Ybo-Fc-edp" firstAttribute="leading" secondItem="f9r-WY-UAU" secondAttribute="leading" id="gqB-Lm-4it"/>
+                                    <constraint firstItem="WKv-I2-uSc" firstAttribute="centerX" secondItem="jwl-4K-Avf" secondAttribute="centerX" id="iKO-DS-kEB"/>
                                     <constraint firstItem="f9r-WY-UAU" firstAttribute="trailing" secondItem="VGn-dR-M4h" secondAttribute="trailing" id="mKs-kT-Rf4"/>
-                                    <constraint firstItem="jwl-4K-Avf" firstAttribute="trailing" secondItem="WKv-I2-uSc" secondAttribute="trailing" id="mjr-vH-cDo"/>
                                     <constraint firstItem="XxR-iz-yRO" firstAttribute="leading" secondItem="Wkx-r9-viD" secondAttribute="leading" id="mvo-cw-nPu"/>
                                     <constraint firstItem="2UZ-hv-dje" firstAttribute="top" secondItem="hnj-BG-pjz" secondAttribute="top" constant="20" id="olN-U2-hoq"/>
                                     <constraint firstItem="2UZ-hv-dje" firstAttribute="leading" secondItem="hnj-BG-pjz" secondAttribute="leading" constant="20" id="v7V-rP-oem"/>
-                                    <constraint firstItem="WKv-I2-uSc" firstAttribute="top" secondItem="jwl-4K-Avf" secondAttribute="bottom" constant="22" id="vL5-bs-dMY"/>
-                                    <constraint firstItem="jwl-4K-Avf" firstAttribute="leading" secondItem="4cT-yY-lQU" secondAttribute="leading" id="wvD-p7-bfA"/>
+                                    <constraint firstItem="WKv-I2-uSc" firstAttribute="top" secondItem="jwl-4K-Avf" secondAttribute="bottom" constant="82" id="vL5-bs-dMY"/>
                                 </constraints>
                             </scrollView>
                             <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kcD-DO-mgx">
