@@ -12,7 +12,10 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        //Set colour for status bar to blue
+        let proxyViewForStatusBar : UIView = UIView(frame: CGRectMake(0, 0,self.view.frame.size.width, 20))
+        proxyViewForStatusBar.backgroundColor = UIColor(red: 0.2314, green: 0.349, blue: 0.5961, alpha: 1.0)
+        self.view.addSubview(proxyViewForStatusBar)
     }
 
     override func didReceiveMemoryWarning() {

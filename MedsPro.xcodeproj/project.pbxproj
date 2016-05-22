@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FC1992271CF0C4F500588B9C /* AddReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1992261CF0C4F500588B9C /* AddReminderViewController.swift */; };
+		FC1992291CF0C50E00588B9C /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1992281CF0C50E00588B9C /* Reminder.swift */; };
+		FC19922B1CF0C61C00588B9C /* DayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC19922A1CF0C61C00588B9C /* DayCell.swift */; };
 		FC3BB25B1CD4E8C60073875F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3BB25A1CD4E8C60073875F /* AppDelegate.swift */; };
-		FC3BB25D1CD4E8C60073875F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3BB25C1CD4E8C60073875F /* ViewController.swift */; };
 		FC3BB2601CD4E8C60073875F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC3BB25E1CD4E8C60073875F /* Main.storyboard */; };
 		FC3BB2631CD4E8C60073875F /* MedsPro.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FC3BB2611CD4E8C60073875F /* MedsPro.xcdatamodeld */; };
 		FC3BB2651CD4E8C60073875F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC3BB2641CD4E8C60073875F /* Assets.xcassets */; };
@@ -35,9 +37,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FC1992261CF0C4F500588B9C /* AddReminderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddReminderViewController.swift; sourceTree = "<group>"; };
+		FC1992281CF0C50E00588B9C /* Reminder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
+		FC19922A1CF0C61C00588B9C /* DayCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayCell.swift; sourceTree = "<group>"; };
 		FC3BB2571CD4E8C60073875F /* MedsPro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MedsPro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC3BB25A1CD4E8C60073875F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FC3BB25C1CD4E8C60073875F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FC3BB25F1CD4E8C60073875F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FC3BB2621CD4E8C60073875F /* MedsPro.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MedsPro.xcdatamodel; sourceTree = "<group>"; };
 		FC3BB2641CD4E8C60073875F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -100,12 +104,14 @@
 			isa = PBXGroup;
 			children = (
 				FC3BB25A1CD4E8C60073875F /* AppDelegate.swift */,
-				FC3BB25C1CD4E8C60073875F /* ViewController.swift */,
 				FC3BB25E1CD4E8C60073875F /* Main.storyboard */,
 				FC3BB2641CD4E8C60073875F /* Assets.xcassets */,
 				FC3BB2661CD4E8C60073875F /* LaunchScreen.storyboard */,
 				FC3BB2691CD4E8C60073875F /* Info.plist */,
 				FC3BB2611CD4E8C60073875F /* MedsPro.xcdatamodeld */,
+				FC1992261CF0C4F500588B9C /* AddReminderViewController.swift */,
+				FC1992281CF0C50E00588B9C /* Reminder.swift */,
+				FC19922A1CF0C61C00588B9C /* DayCell.swift */,
 			);
 			path = MedsPro;
 			sourceTree = "<group>";
@@ -196,6 +202,12 @@
 				TargetAttributes = {
 					FC3BB2561CD4E8C60073875F = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = LVX42FUSF8;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 0;
+							};
+						};
 					};
 					FC3BB26D1CD4E8C60073875F = {
 						CreatedOnToolsVersion = 7.3;
@@ -260,8 +272,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC3BB2631CD4E8C60073875F /* MedsPro.xcdatamodeld in Sources */,
-				FC3BB25D1CD4E8C60073875F /* ViewController.swift in Sources */,
+				FC1992271CF0C4F500588B9C /* AddReminderViewController.swift in Sources */,
+				FC19922B1CF0C61C00588B9C /* DayCell.swift in Sources */,
 				FC3BB25B1CD4E8C60073875F /* AppDelegate.swift in Sources */,
+				FC1992291CF0C50E00588B9C /* Reminder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,10 +417,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MedsPro/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = louisan.MedsPro;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -414,10 +431,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MedsPro/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = louisan.MedsPro;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -486,6 +506,7 @@
 				FC3BB2841CD4E8C60073875F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FC3BB2851CD4E8C60073875F /* Build configuration list for PBXNativeTarget "MedsProTests" */ = {
 			isa = XCConfigurationList;
@@ -494,6 +515,7 @@
 				FC3BB2871CD4E8C60073875F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FC3BB2881CD4E8C60073875F /* Build configuration list for PBXNativeTarget "MedsProUITests" */ = {
 			isa = XCConfigurationList;
@@ -502,6 +524,7 @@
 				FC3BB28A1CD4E8C60073875F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
