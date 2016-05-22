@@ -111,7 +111,7 @@
         <!--Add Medcine-->
         <scene sceneID="Zhy-kk-0BV">
             <objects>
-                <viewController title="Add Medcine" id="4gX-1J-zAP" sceneMemberID="viewController">
+                <viewController title="Add Medcine" id="4gX-1J-zAP" customClass="AddMedicineController" customModule="MedsPro" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ACq-Lw-zUO"/>
                         <viewControllerLayoutGuide type="bottom" id="FJu-M5-LuV"/>
@@ -154,6 +154,9 @@
                                             <segment title="Before Meal"/>
                                             <segment title="After Meal"/>
                                         </segments>
+                                        <connections>
+                                            <action selector="segmentedControlAction:" destination="4gX-1J-zAP" eventType="valueChanged" id="XQK-OH-vqW"/>
+                                        </connections>
                                     </segmentedControl>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Notes" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZNb-TZ-jD7">
                                         <rect key="frame" x="20" y="197" width="560" height="30"/>
@@ -200,7 +203,7 @@
                                             <constraint firstAttribute="height" constant="240" id="Foc-5A-DEl"/>
                                         </constraints>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="k3p-hT-NV2" detailTextLabel="3rU-g1-md1" style="IBUITableViewCellStyleSubtitle" id="L9T-i7-FT5">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ReminderCell" textLabel="k3p-hT-NV2" detailTextLabel="3rU-g1-md1" style="IBUITableViewCellStyleSubtitle" id="L9T-i7-FT5" customClass="ReminderCell" customModule="MedsPro" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="560" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="L9T-i7-FT5" id="ghS-qH-J6Q">
@@ -223,8 +226,16 @@
                                                         </label>
                                                     </subviews>
                                                 </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="reminderLabel" destination="k3p-hT-NV2" id="y0v-9U-Ncu"/>
+                                                    <outlet property="timeLabel" destination="3rU-g1-md1" id="PLT-sM-siw"/>
+                                                </connections>
                                             </tableViewCell>
                                         </prototypes>
+                                        <connections>
+                                            <outlet property="dataSource" destination="4gX-1J-zAP" id="X4p-sY-cgY"/>
+                                            <outlet property="delegate" destination="4gX-1J-zAP" id="v02-AH-PQG"/>
+                                        </connections>
                                     </tableView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G9l-6x-vVY">
                                         <rect key="frame" x="234" y="368" width="132" height="30"/>
@@ -288,7 +299,11 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Add Medicine" id="pg0-4r-edu">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="jMl-U3-2uJ"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="jMl-U3-2uJ">
+                            <connections>
+                                <action selector="saveButton:" destination="4gX-1J-zAP" id="L6t-bg-Nxi"/>
+                            </connections>
+                        </barButtonItem>
                         <connections>
                             <outlet property="rightBarButtonItem" destination="jMl-U3-2uJ" id="Lbw-b1-Rgf"/>
                         </connections>
@@ -296,6 +311,16 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="900"/>
+                    <connections>
+                        <outlet property="medDosageLabel" destination="f9r-WY-UAU" id="05L-0J-8pf"/>
+                        <outlet property="medNameLabel" destination="2UZ-hv-dje" id="SXE-TX-pGp"/>
+                        <outlet property="medNoteLabel" destination="ZNb-TZ-jD7" id="T0Q-O3-qHu"/>
+                        <outlet property="medNumberOfPillsLabel" destination="Wkx-r9-viD" id="GVe-Im-wUD"/>
+                        <outlet property="medPrescriptionDateLabel" destination="XxR-iz-yRO" id="fLR-Qm-3Iq"/>
+                        <outlet property="medStrengthLabel" destination="Ybo-Fc-edp" id="gdt-54-4EJ"/>
+                        <outlet property="segmentedControlOutlet" destination="VGn-dR-M4h" id="JmW-dx-IDd"/>
+                        <outlet property="tableView" destination="jwl-4K-Avf" id="HqK-8r-tzA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y2D-Tu-ZP3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
