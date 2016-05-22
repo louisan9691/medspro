@@ -117,11 +117,11 @@
                         <viewControllerLayoutGuide type="bottom" id="FJu-M5-LuV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="mDt-TA-aHy">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="1000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="1050"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hnj-BG-pjz">
-                                <rect key="frame" x="0.0" y="52" width="600" height="896"/>
+                                <rect key="frame" x="0.0" y="52" width="600" height="946"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Medicine name" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2UZ-hv-dje">
                                         <rect key="frame" x="20" y="20" width="560" height="30"/>
@@ -244,13 +244,7 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="238" height="148"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="238" id="Jzo-DL-c0j"/>
-                                                                <constraint firstAttribute="height" constant="128" id="lYM-Ul-F4p"/>
                                                             </constraints>
-                                                            <variation key="default">
-                                                                <mask key="constraints">
-                                                                    <exclude reference="lYM-Ul-F4p"/>
-                                                                </mask>
-                                                            </variation>
                                                         </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -290,7 +284,6 @@
                                     <constraint firstItem="VGn-dR-M4h" firstAttribute="trailing" secondItem="ZNb-TZ-jD7" secondAttribute="trailing" id="5lT-tE-Bax"/>
                                     <constraint firstItem="10e-zW-Hee" firstAttribute="top" secondItem="Wkx-r9-viD" secondAttribute="bottom" constant="8" symbolic="YES" id="7TO-kj-cQz"/>
                                     <constraint firstItem="VGn-dR-M4h" firstAttribute="top" secondItem="f9r-WY-UAU" secondAttribute="bottom" constant="35" id="7j9-tc-arT"/>
-                                    <constraint firstAttribute="bottom" secondItem="WKv-I2-uSc" secondAttribute="bottom" constant="16" id="9vU-JZ-MEx"/>
                                     <constraint firstItem="2UZ-hv-dje" firstAttribute="leading" secondItem="Ybo-Fc-edp" secondAttribute="leading" id="A9b-Az-u4J"/>
                                     <constraint firstItem="Wkx-r9-viD" firstAttribute="top" secondItem="XxR-iz-yRO" secondAttribute="bottom" constant="8" symbolic="YES" id="C7c-GU-Mnr"/>
                                     <constraint firstItem="XxR-iz-yRO" firstAttribute="top" secondItem="ZNb-TZ-jD7" secondAttribute="bottom" constant="8" symbolic="YES" id="CHp-fK-vCM"/>
@@ -300,6 +293,7 @@
                                     <constraint firstItem="XxR-iz-yRO" firstAttribute="trailing" secondItem="Wkx-r9-viD" secondAttribute="trailing" id="I29-H1-jin"/>
                                     <constraint firstItem="f9r-WY-UAU" firstAttribute="leading" secondItem="VGn-dR-M4h" secondAttribute="leading" id="KJw-ZP-kZn"/>
                                     <constraint firstItem="RdQ-vl-HDx" firstAttribute="trailing" secondItem="jwl-4K-Avf" secondAttribute="trailing" id="Liw-47-ua5"/>
+                                    <constraint firstAttribute="bottom" secondItem="WKv-I2-uSc" secondAttribute="bottom" constant="66" id="M9b-dD-kva"/>
                                     <constraint firstItem="Wkx-r9-viD" firstAttribute="trailing" secondItem="RdQ-vl-HDx" secondAttribute="trailing" id="NxJ-1U-p2C"/>
                                     <constraint firstItem="2UZ-hv-dje" firstAttribute="centerX" secondItem="hnj-BG-pjz" secondAttribute="centerX" id="RAq-1L-IVZ"/>
                                     <constraint firstItem="2UZ-hv-dje" firstAttribute="trailing" secondItem="Ybo-Fc-edp" secondAttribute="trailing" id="SV8-nT-uH5"/>
@@ -322,7 +316,7 @@
                                 </constraints>
                             </scrollView>
                             <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kcD-DO-mgx">
-                                <rect key="frame" x="0.0" y="951" width="600" height="49"/>
+                                <rect key="frame" x="0.0" y="1001" width="600" height="49"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <items>
                                     <tabBarItem title="Schedule" image="Schedule" selectedImage="Schedule" id="NgE-2f-w6B"/>
@@ -356,7 +350,7 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="600" height="1000"/>
+                    <size key="freeformSize" width="600" height="1050"/>
                     <connections>
                         <outlet property="collectionView" destination="WKv-I2-uSc" id="C37-oD-FmS"/>
                         <outlet property="medDosageLabel" destination="f9r-WY-UAU" id="05L-0J-8pf"/>
@@ -490,11 +484,11 @@
                         <viewControllerLayoutGuide type="bottom" id="sIH-5Y-q03"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="mAf-Da-lQw">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="1000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="1050"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c1B-Ol-D9L">
-                                <rect key="frame" x="-20" y="44" width="640" height="932"/>
+                                <rect key="frame" x="-20" y="44" width="640" height="982"/>
                                 <subviews>
                                     <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qSc-yW-fjP">
                                         <rect key="frame" x="20" y="20" width="600" height="892"/>
