@@ -173,10 +173,10 @@
                                         <rect key="frame" x="531" y="306" width="51" height="31"/>
                                     </switch>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jwl-4K-Avf">
-                                        <rect key="frame" x="20" y="406" width="560" height="240"/>
+                                        <rect key="frame" x="20" y="406" width="560" height="172"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="240" id="S55-dn-czb"/>
+                                            <constraint firstAttribute="height" constant="172" id="S55-dn-czb"/>
                                         </constraints>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ReminderCell" textLabel="k3p-hT-NV2" detailTextLabel="3rU-g1-md1" style="IBUITableViewCellStyleSubtitle" id="L9T-i7-FT5" customClass="ReminderCell" customModule="MedsPro" customModuleProvider="target">
@@ -220,8 +220,19 @@
                                             <segue destination="Jia-3O-ZXx" kind="show" identifier="addReminderSegue" id="LMl-GY-39e"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4cT-yY-lQU">
+                                        <rect key="frame" x="264" y="608" width="72" height="31"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="31" id="5z1-jh-aPp"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                        <state key="normal" title="Add Photo"/>
+                                        <connections>
+                                            <action selector="addPhoto:" destination="4gX-1J-zAP" eventType="touchUpInside" id="jTP-uP-COm"/>
+                                        </connections>
+                                    </button>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="WKv-I2-uSc">
-                                        <rect key="frame" x="180" y="728" width="240" height="152"/>
+                                        <rect key="frame" x="180" y="669" width="240" height="152"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="152" id="ain-ub-mBv"/>
                                             <constraint firstAttribute="width" constant="240" id="ow4-r2-3ke"/>
@@ -265,16 +276,6 @@
                                             <outlet property="delegate" destination="4gX-1J-zAP" id="gy6-6F-6EU"/>
                                         </connections>
                                     </collectionView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4cT-yY-lQU">
-                                        <rect key="frame" x="264" y="663" width="72" height="31"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="31" id="5z1-jh-aPp"/>
-                                        </constraints>
-                                        <state key="normal" title="Add Photo"/>
-                                        <connections>
-                                            <action selector="addPhoto:" destination="4gX-1J-zAP" eventType="touchUpInside" id="jTP-uP-COm"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="10e-zW-Hee" firstAttribute="leading" secondItem="jwl-4K-Avf" secondAttribute="leading" id="3ac-rS-xTe"/>
@@ -293,7 +294,7 @@
                                     <constraint firstItem="XxR-iz-yRO" firstAttribute="trailing" secondItem="Wkx-r9-viD" secondAttribute="trailing" id="I29-H1-jin"/>
                                     <constraint firstItem="f9r-WY-UAU" firstAttribute="leading" secondItem="VGn-dR-M4h" secondAttribute="leading" id="KJw-ZP-kZn"/>
                                     <constraint firstItem="RdQ-vl-HDx" firstAttribute="trailing" secondItem="jwl-4K-Avf" secondAttribute="trailing" id="Liw-47-ua5"/>
-                                    <constraint firstAttribute="bottom" secondItem="WKv-I2-uSc" secondAttribute="bottom" constant="66" id="M9b-dD-kva"/>
+                                    <constraint firstAttribute="bottom" secondItem="WKv-I2-uSc" secondAttribute="bottom" constant="125" id="M9b-dD-kva"/>
                                     <constraint firstItem="Wkx-r9-viD" firstAttribute="trailing" secondItem="RdQ-vl-HDx" secondAttribute="trailing" id="NxJ-1U-p2C"/>
                                     <constraint firstItem="2UZ-hv-dje" firstAttribute="centerX" secondItem="hnj-BG-pjz" secondAttribute="centerX" id="RAq-1L-IVZ"/>
                                     <constraint firstItem="2UZ-hv-dje" firstAttribute="trailing" secondItem="Ybo-Fc-edp" secondAttribute="trailing" id="SV8-nT-uH5"/>
@@ -302,7 +303,7 @@
                                     <constraint firstItem="VGn-dR-M4h" firstAttribute="leading" secondItem="ZNb-TZ-jD7" secondAttribute="leading" id="cZg-KH-TlL"/>
                                     <constraint firstItem="f9r-WY-UAU" firstAttribute="top" secondItem="Ybo-Fc-edp" secondAttribute="bottom" constant="8" symbolic="YES" id="cv2-Rv-4Ao"/>
                                     <constraint firstItem="ZNb-TZ-jD7" firstAttribute="top" secondItem="VGn-dR-M4h" secondAttribute="bottom" constant="8" symbolic="YES" id="dRX-eA-02i"/>
-                                    <constraint firstItem="4cT-yY-lQU" firstAttribute="top" secondItem="jwl-4K-Avf" secondAttribute="bottom" constant="17" id="daY-mN-2Mc"/>
+                                    <constraint firstItem="4cT-yY-lQU" firstAttribute="top" secondItem="jwl-4K-Avf" secondAttribute="bottom" constant="30" id="daY-mN-2Mc"/>
                                     <constraint firstItem="4cT-yY-lQU" firstAttribute="centerX" secondItem="jwl-4K-Avf" secondAttribute="centerX" id="ehV-j5-2m2"/>
                                     <constraint firstItem="Ybo-Fc-edp" firstAttribute="top" secondItem="2UZ-hv-dje" secondAttribute="bottom" constant="8" symbolic="YES" id="fYe-rg-nyM"/>
                                     <constraint firstItem="G9l-6x-vVY" firstAttribute="top" secondItem="Wkx-r9-viD" secondAttribute="bottom" constant="65" id="fxV-s0-CG0"/>
@@ -312,7 +313,7 @@
                                     <constraint firstItem="XxR-iz-yRO" firstAttribute="leading" secondItem="Wkx-r9-viD" secondAttribute="leading" id="mvo-cw-nPu"/>
                                     <constraint firstItem="2UZ-hv-dje" firstAttribute="top" secondItem="hnj-BG-pjz" secondAttribute="top" constant="20" id="olN-U2-hoq"/>
                                     <constraint firstItem="2UZ-hv-dje" firstAttribute="leading" secondItem="hnj-BG-pjz" secondAttribute="leading" constant="20" id="v7V-rP-oem"/>
-                                    <constraint firstItem="WKv-I2-uSc" firstAttribute="top" secondItem="jwl-4K-Avf" secondAttribute="bottom" constant="82" id="vL5-bs-dMY"/>
+                                    <constraint firstItem="WKv-I2-uSc" firstAttribute="top" secondItem="jwl-4K-Avf" secondAttribute="bottom" constant="91" id="vL5-bs-dMY"/>
                                 </constraints>
                             </scrollView>
                             <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kcD-DO-mgx">
@@ -484,11 +485,11 @@
                         <viewControllerLayoutGuide type="bottom" id="sIH-5Y-q03"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="mAf-Da-lQw">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="1050"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c1B-Ol-D9L">
-                                <rect key="frame" x="-20" y="44" width="640" height="982"/>
+                                <rect key="frame" x="-20" y="44" width="640" height="532"/>
                                 <subviews>
                                     <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qSc-yW-fjP">
                                         <rect key="frame" x="20" y="20" width="600" height="892"/>
@@ -518,6 +519,8 @@
                             <constraint firstItem="c1B-Ol-D9L" firstAttribute="leading" secondItem="mAf-Da-lQw" secondAttribute="leadingMargin" constant="-40" id="wPP-LZ-H8h"/>
                         </constraints>
                     </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="600" height="600"/>
                     <connections>
                         <outlet property="photoView" destination="qSc-yW-fjP" id="4sO-aW-xW8"/>
                         <outlet property="scrollView" destination="c1B-Ol-D9L" id="NXq-zC-hxA"/>
@@ -525,7 +528,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZO7-vV-krG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3995" y="850"/>
+            <point key="canvasLocation" x="3995" y="674"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="va1-Pq-YIN">
