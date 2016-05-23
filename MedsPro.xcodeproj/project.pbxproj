@@ -21,7 +21,8 @@
 		FC8D7C771CF1EA8A00FB5E53 /* AddMedicineController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8D7C761CF1EA8A00FB5E53 /* AddMedicineController.swift */; };
 		FC8D7C791CF2093100FB5E53 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8D7C781CF2093100FB5E53 /* PhotoViewController.swift */; };
 		FC8D7C7B1CF20C4C00FB5E53 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8D7C7A1CF20C4C00FB5E53 /* PhotoCell.swift */; };
-		FC8D7C801CF33EE000FB5E53 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8D7C7F1CF33EE000FB5E53 /* SWRevealViewController.m */; };
+		FC8D7C931CF3670200FB5E53 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC8D7C921CF3670200FB5E53 /* SWRevealViewController.m */; };
+		FC8D7C951CF369A000FB5E53 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8D7C941CF369A000FB5E53 /* ScheduleViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,8 +64,9 @@
 		FC8D7C781CF2093100FB5E53 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		FC8D7C7A1CF20C4C00FB5E53 /* PhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		FC8D7C7D1CF33EE000FB5E53 /* MedsPro-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MedsPro-Bridging-Header.h"; sourceTree = "<group>"; };
-		FC8D7C7E1CF33EE000FB5E53 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
-		FC8D7C7F1CF33EE000FB5E53 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		FC8D7C911CF3670200FB5E53 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		FC8D7C921CF3670200FB5E53 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		FC8D7C941CF369A000FB5E53 /* ScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,12 +125,13 @@
 				FC3BB2611CD4E8C60073875F /* MedsPro.xcdatamodeld */,
 				FC1992261CF0C4F500588B9C /* AddReminderViewController.swift */,
 				FC1992281CF0C50E00588B9C /* Reminder.swift */,
-				FC8D7C7C1CF33EAD00FB5E53 /* SWRevealViewController */,
 				FC19922A1CF0C61C00588B9C /* DayCell.swift */,
 				FC8D7C741CF1E9F000FB5E53 /* ReminderCell.swift */,
 				FC8D7C761CF1EA8A00FB5E53 /* AddMedicineController.swift */,
 				FC8D7C781CF2093100FB5E53 /* PhotoViewController.swift */,
 				FC8D7C7A1CF20C4C00FB5E53 /* PhotoCell.swift */,
+				FC8D7C7C1CF33EAD00FB5E53 /* SWRevealViewController */,
+				FC8D7C941CF369A000FB5E53 /* ScheduleViewController.swift */,
 			);
 			path = MedsPro;
 			sourceTree = "<group>";
@@ -154,8 +157,8 @@
 		FC8D7C7C1CF33EAD00FB5E53 /* SWRevealViewController */ = {
 			isa = PBXGroup;
 			children = (
-				FC8D7C7E1CF33EE000FB5E53 /* SWRevealViewController.h */,
-				FC8D7C7F1CF33EE000FB5E53 /* SWRevealViewController.m */,
+				FC8D7C911CF3670200FB5E53 /* SWRevealViewController.h */,
+				FC8D7C921CF3670200FB5E53 /* SWRevealViewController.m */,
 				FC8D7C7D1CF33EE000FB5E53 /* MedsPro-Bridging-Header.h */,
 			);
 			name = SWRevealViewController;
@@ -305,8 +308,9 @@
 				FC19922B1CF0C61C00588B9C /* DayCell.swift in Sources */,
 				FC3BB25B1CD4E8C60073875F /* AppDelegate.swift in Sources */,
 				FC8D7C791CF2093100FB5E53 /* PhotoViewController.swift in Sources */,
-				FC8D7C801CF33EE000FB5E53 /* SWRevealViewController.m in Sources */,
+				FC8D7C931CF3670200FB5E53 /* SWRevealViewController.m in Sources */,
 				FC8D7C771CF1EA8A00FB5E53 /* AddMedicineController.swift in Sources */,
+				FC8D7C951CF369A000FB5E53 /* ScheduleViewController.swift in Sources */,
 				FC1992291CF0C50E00588B9C /* Reminder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
