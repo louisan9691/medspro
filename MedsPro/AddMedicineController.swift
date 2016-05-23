@@ -155,7 +155,6 @@ class AddMedicineController: UIViewController, addDayDelegate, UINavigationContr
     
     
     
-    
     func addDay(reminder: Reminder) {
         currentReminder.addObject(reminder)
         self.tableView.reloadData()
@@ -165,7 +164,7 @@ class AddMedicineController: UIViewController, addDayDelegate, UINavigationContr
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        roundedButton()
     }
 
     override func didReceiveMemoryWarning() {
@@ -173,5 +172,14 @@ class AddMedicineController: UIViewController, addDayDelegate, UINavigationContr
         // Dispose of any resources that can be recreated.
     }
     
+    //Rounded button
+    @IBOutlet weak var btnRounded: UIButton!
+    func roundedButton()
+    {
+       btnRounded.layer.borderColor = UIColor(red: 81/255, green: 159/255, blue: 243/255, alpha: 1).CGColor
+       btnRounded.layer.borderWidth = 1
+       btnRounded.layer.cornerRadius = 5
+       
+    }
   
 }

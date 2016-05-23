@@ -220,17 +220,6 @@
                                             <segue destination="Jia-3O-ZXx" kind="show" identifier="addReminderSegue" id="LMl-GY-39e"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4cT-yY-lQU">
-                                        <rect key="frame" x="264" y="608" width="72" height="31"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="31" id="5z1-jh-aPp"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                        <state key="normal" title="Add Photo"/>
-                                        <connections>
-                                            <action selector="addPhoto:" destination="4gX-1J-zAP" eventType="touchUpInside" id="jTP-uP-COm"/>
-                                        </connections>
-                                    </button>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="WKv-I2-uSc">
                                         <rect key="frame" x="180" y="669" width="240" height="152"/>
                                         <constraints>
@@ -276,6 +265,17 @@
                                             <outlet property="delegate" destination="4gX-1J-zAP" id="gy6-6F-6EU"/>
                                         </connections>
                                     </collectionView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4cT-yY-lQU">
+                                        <rect key="frame" x="264" y="607" width="72" height="34"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="34" id="5z1-jh-aPp"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                        <state key="normal" title="Add Photo"/>
+                                        <connections>
+                                            <action selector="addPhoto:" destination="4gX-1J-zAP" eventType="touchUpInside" id="jTP-uP-COm"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="10e-zW-Hee" firstAttribute="leading" secondItem="jwl-4K-Avf" secondAttribute="leading" id="3ac-rS-xTe"/>
@@ -303,7 +303,7 @@
                                     <constraint firstItem="VGn-dR-M4h" firstAttribute="leading" secondItem="ZNb-TZ-jD7" secondAttribute="leading" id="cZg-KH-TlL"/>
                                     <constraint firstItem="f9r-WY-UAU" firstAttribute="top" secondItem="Ybo-Fc-edp" secondAttribute="bottom" constant="8" symbolic="YES" id="cv2-Rv-4Ao"/>
                                     <constraint firstItem="ZNb-TZ-jD7" firstAttribute="top" secondItem="VGn-dR-M4h" secondAttribute="bottom" constant="8" symbolic="YES" id="dRX-eA-02i"/>
-                                    <constraint firstItem="4cT-yY-lQU" firstAttribute="top" secondItem="jwl-4K-Avf" secondAttribute="bottom" constant="30" id="daY-mN-2Mc"/>
+                                    <constraint firstItem="4cT-yY-lQU" firstAttribute="top" secondItem="jwl-4K-Avf" secondAttribute="bottom" constant="29" id="daY-mN-2Mc"/>
                                     <constraint firstItem="4cT-yY-lQU" firstAttribute="centerX" secondItem="jwl-4K-Avf" secondAttribute="centerX" id="ehV-j5-2m2"/>
                                     <constraint firstItem="Ybo-Fc-edp" firstAttribute="top" secondItem="2UZ-hv-dje" secondAttribute="bottom" constant="8" symbolic="YES" id="fYe-rg-nyM"/>
                                     <constraint firstItem="G9l-6x-vVY" firstAttribute="top" secondItem="Wkx-r9-viD" secondAttribute="bottom" constant="65" id="fxV-s0-CG0"/>
@@ -353,6 +353,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="1050"/>
                     <connections>
+                        <outlet property="btnRounded" destination="4cT-yY-lQU" id="HH3-eM-aKA"/>
                         <outlet property="collectionView" destination="WKv-I2-uSc" id="C37-oD-FmS"/>
                         <outlet property="medDosageLabel" destination="f9r-WY-UAU" id="05L-0J-8pf"/>
                         <outlet property="medNameLabel" destination="2UZ-hv-dje" id="SXE-TX-pGp"/>
