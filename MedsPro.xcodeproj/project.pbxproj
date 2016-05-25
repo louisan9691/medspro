@@ -17,6 +17,7 @@
 		FC3BB2681CD4E8C60073875F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC3BB2661CD4E8C60073875F /* LaunchScreen.storyboard */; };
 		FC3BB2731CD4E8C60073875F /* MedsProTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3BB2721CD4E8C60073875F /* MedsProTests.swift */; };
 		FC3BB27E1CD4E8C60073875F /* MedsProUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3BB27D1CD4E8C60073875F /* MedsProUITests.swift */; };
+		FC82E7C31CF3D81E004BA6A0 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC82E7C21CF3D81E004BA6A0 /* CloudKit.framework */; };
 		FC8D7C751CF1E9F000FB5E53 /* ReminderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8D7C741CF1E9F000FB5E53 /* ReminderCell.swift */; };
 		FC8D7C771CF1EA8A00FB5E53 /* AddMedicineController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8D7C761CF1EA8A00FB5E53 /* AddMedicineController.swift */; };
 		FC8D7C791CF2093100FB5E53 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8D7C781CF2093100FB5E53 /* PhotoViewController.swift */; };
@@ -68,6 +69,8 @@
 		FC3BB2791CD4E8C60073875F /* MedsProUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MedsProUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC3BB27D1CD4E8C60073875F /* MedsProUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedsProUITests.swift; sourceTree = "<group>"; };
 		FC3BB27F1CD4E8C60073875F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FC82E7BF1CF3CFF4004BA6A0 /* MedsPro.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = MedsPro.entitlements; sourceTree = "<group>"; };
+		FC82E7C21CF3D81E004BA6A0 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		FC8D7C741CF1E9F000FB5E53 /* ReminderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderCell.swift; sourceTree = "<group>"; };
 		FC8D7C761CF1EA8A00FB5E53 /* AddMedicineController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMedicineController.swift; sourceTree = "<group>"; };
 		FC8D7C781CF2093100FB5E53 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
@@ -92,6 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC82E7C31CF3D81E004BA6A0 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,6 +119,7 @@
 		FC3BB24E1CD4E8C60073875F = {
 			isa = PBXGroup;
 			children = (
+				FC82E7C21CF3D81E004BA6A0 /* CloudKit.framework */,
 				FC3BB2591CD4E8C60073875F /* MedsPro */,
 				FC3BB2711CD4E8C60073875F /* MedsProTests */,
 				FC3BB27C1CD4E8C60073875F /* MedsProUITests */,
@@ -135,6 +140,7 @@
 		FC3BB2591CD4E8C60073875F /* MedsPro */ = {
 			isa = PBXGroup;
 			children = (
+				FC82E7BF1CF3CFF4004BA6A0 /* MedsPro.entitlements */,
 				FC3BB25A1CD4E8C60073875F /* AppDelegate.swift */,
 				FC3BB25E1CD4E8C60073875F /* Main.storyboard */,
 				FC3BB2641CD4E8C60073875F /* Assets.xcassets */,
@@ -267,10 +273,13 @@
 				TargetAttributes = {
 					FC3BB2561CD4E8C60073875F = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = LVX42FUSF8;
+						DevelopmentTeam = 9PP6LYBJX3;
 						SystemCapabilities = {
 							com.apple.Maps.iOS = {
 								enabled = 0;
+							};
+							com.apple.iCloud = {
+								enabled = 1;
 							};
 						};
 					};
@@ -498,11 +507,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = MedsPro/MedsPro.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MedsPro/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = louisan.MedsPro;
+				PRODUCT_BUNDLE_IDENTIFIER = com.louisan.MedsPro;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "MedsPro/MedsPro-Bridging-Header.h";
@@ -515,11 +525,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = MedsPro/MedsPro.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MedsPro/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = louisan.MedsPro;
+				PRODUCT_BUNDLE_IDENTIFIER = com.louisan.MedsPro;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "MedsPro/MedsPro-Bridging-Header.h";
