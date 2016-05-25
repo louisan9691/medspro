@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CloudKit
 
 private let resuseIdentifier = "PhotoCellIdentifier"
 
@@ -15,7 +16,10 @@ class AddMedicineController: UIViewController, addDayDelegate, UINavigationContr
     var currentReminder: NSMutableArray
     var photoList: NSMutableArray?
     var segmentedControlValue = "Before Meal"
+    var photoURL: NSURL!
+    var reminder = [String:NSDate]()
     
+    let publicDB = CKContainer.defaultContainer().publicCloudDatabase
     
     required init?(coder aDecoder: NSCoder){
         self.currentReminder = NSMutableArray()
@@ -50,6 +54,8 @@ class AddMedicineController: UIViewController, addDayDelegate, UINavigationContr
         }
     }
     
+    
+    //Add photo button
     @IBAction func addPhoto(sender: AnyObject) {
         let imagePicker: UIImagePickerController = UIImagePickerController()
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera){
@@ -69,6 +75,7 @@ class AddMedicineController: UIViewController, addDayDelegate, UINavigationContr
             photoList!.addObject(img!)
             collectionView?.reloadData()
         }
+        
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -91,6 +98,7 @@ class AddMedicineController: UIViewController, addDayDelegate, UINavigationContr
     
     
     
+    //Save data button
     @IBAction func saveButton(sender: AnyObject) {
         if (medNameLabel.text!.isEmpty) || (medDosageLabel.text!.isEmpty){
             let alertController =  UIAlertController(title: "Missing Field", message: "Please enter you medicine details", preferredStyle: UIAlertControllerStyle.Alert)
@@ -99,9 +107,65 @@ class AddMedicineController: UIViewController, addDayDelegate, UINavigationContr
             self.presentViewController(alertController, animated: true, completion: nil)
         }
         else{
-          self.navigationController!.popViewControllerAnimated(true)
+        let newMedicine = CKRecord(recordType: "Medicine")
+            newMedicine["medName"] = medNameLabel.text!
+            newMedicine["medStrength"] = medStrengthLabel.text!
+            newMedicine["medDosage"] = Int(medDosageLabel.text!)
+            newMedicine["medWhen"] = segmentedControlValue
+            newMedicine["medNote"] = medNoteLabel.text!
+            newMedicine["medPrescription"] = medPrescriptionDateLabel.text!
+            newMedicine["medNumberOfPills"] = Int(medNumberOfPillsLabel.text!)
+            
+            if(photoList!.count > 0){
+                    let image = photoList![0] as! UIImage
+                    let fileManager = NSFileManager.defaultManager()
+                    let dir = fileManager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
+                    let file = dir[0].URLByAppendingPathComponent("image").path
+                    UIImagePNGRepresentation(image)?.writeToFile(file!, atomically: true)
+                    let imageURL = NSURL.fileURLWithPath(file!)
+                    let imageAsset = CKAsset(fileURL: imageURL)
+                    print (imageAsset)
+                    
+                    newMedicine["medImage"] = imageAsset
+            
+            }
+            
+            
+           
+            publicDB.saveRecord(newMedicine, completionHandler: {(record:CKRecord?, error:NSError?) -> Void in
+                if error == nil{
+                     print("Medicine is inserted into the database")
+                }else{
+                    print("Error saving data on the icloud" + error.debugDescription)
+                }
+            })
+            
+           
+            for(key,value) in reminder{
+                let newReminder = CKRecord(recordType: "Reminder")
+                newReminder["Day"] = key
+                newReminder["Time"] = value
+                print(key)
+                print(value)
+                
+                publicDB.saveRecord(newReminder, completionHandler: {(record:CKRecord?, error:NSError?) -> Void in
+                    if error == nil{
+                        print("Reminder is inserted into the database")
+                    }else{
+                        print("Error saving data on the icloud" + error.debugDescription)
+                    }
+                })
+
+            }
+
+            
+            
+            self.navigationController!.popViewControllerAnimated(true)
+
+            
         }
     }
+    
     
     
     
@@ -123,6 +187,13 @@ class AddMedicineController: UIViewController, addDayDelegate, UINavigationContr
         let r: Reminder = self.currentReminder[indexPath.row] as! Reminder
         cell.reminderLabel.text = r.day!
         cell.timeLabel.text = r.getFormattedDate()
+        reminder[r.day!] = r.time!
+//        print(reminder)
+//        for (value,key) in reminder{
+//            print (value)
+//            print(key)
+//        }
+        
    
         return cell
     }
@@ -140,6 +211,8 @@ class AddMedicineController: UIViewController, addDayDelegate, UINavigationContr
     }
 
     
+    
+    //Segue
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "addReminderSegue"
         {
@@ -163,9 +236,9 @@ class AddMedicineController: UIViewController, addDayDelegate, UINavigationContr
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         roundedButton()
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
