@@ -1530,7 +1530,7 @@
         <!--Medicine-->
         <scene sceneID="3Sm-aB-hPo">
             <objects>
-                <viewController id="ezb-eA-IS9" sceneMemberID="viewController">
+                <viewController id="ezb-eA-IS9" customClass="MedicineViewController" customModule="MedsPro" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="69R-2z-vDe"/>
                         <viewControllerLayoutGuide type="bottom" id="UFf-VE-lib"/>
@@ -1540,7 +1540,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Medicine" id="Poq-uz-7Uo"/>
+                    <navigationItem key="navigationItem" title="Medicine" id="Poq-uz-7Uo">
+                        <barButtonItem key="leftBarButtonItem" image="Menu" id="p60-IC-Cjn"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="menuButton" destination="p60-IC-Cjn" id="QjD-Ih-WoY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="axO-VA-itw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1568,7 +1573,7 @@
         <!--Measurements-->
         <scene sceneID="tEh-bi-dm1">
             <objects>
-                <viewController id="8dE-6o-wJh" sceneMemberID="viewController">
+                <viewController id="8dE-6o-wJh" customClass="MeasurementsViewController" customModule="MedsPro" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kMk-HJ-BgM"/>
                         <viewControllerLayoutGuide type="bottom" id="L23-7h-jka"/>
@@ -1578,7 +1583,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Measurements" id="SxU-Pd-4Sq"/>
+                    <navigationItem key="navigationItem" title="Measurements" id="SxU-Pd-4Sq">
+                        <barButtonItem key="leftBarButtonItem" image="Menu" id="Q2y-5f-6pA"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="menuButton" destination="Q2y-5f-6pA" id="Qyo-0f-wrh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8nN-1a-T1l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1606,7 +1616,7 @@
         <!--User-->
         <scene sceneID="0BG-aw-JiZ">
             <objects>
-                <viewController id="AHx-8T-9V4" sceneMemberID="viewController">
+                <viewController id="AHx-8T-9V4" customClass="UserViewController" customModule="MedsPro" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="KeX-qZ-Oyt"/>
                         <viewControllerLayoutGuide type="bottom" id="zfI-DS-NqP"/>
@@ -1616,7 +1626,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="User" id="95F-A1-cO5"/>
+                    <navigationItem key="navigationItem" title="User" id="95F-A1-cO5">
+                        <barButtonItem key="leftBarButtonItem" image="Menu" id="pJX-Ba-MPj"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="menuButton" destination="pJX-Ba-MPj" id="aip-Le-gbC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LlP-Mv-z3l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

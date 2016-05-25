@@ -91,6 +91,7 @@ class AddMedicineController: UIViewController, addDayDelegate, UINavigationContr
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(resuseIdentifier, forIndexPath: indexPath) as! PhotoCell
         let img = photoList!.objectAtIndex(indexPath.row)
         cell.photoView!.image = img as? UIImage
+        //print("avbbc")
         return cell
     }
     
@@ -137,12 +138,21 @@ class AddMedicineController: UIViewController, addDayDelegate, UINavigationContr
                      print("Medicine is inserted into the database")
                 }else{
                     print("Error saving data on the icloud" + error.debugDescription)
+                    let alertController =  UIAlertController(title: "Login required", message: "Please login using your Apple ID", preferredStyle: UIAlertControllerStyle.Alert)
+                    
+                    alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+                    self.presentViewController(alertController, animated: true, completion: nil)
                 }
             })
             
            
             for(key,value) in reminder{
                 let newReminder = CKRecord(recordType: "Reminder")
+                
+                //Establish relationship 1-M with medicine
+                let medReference = CKReference(record: newMedicine, action: CKReferenceAction.DeleteSelf)
+                newReminder["med"] = medReference
+                
                 newReminder["Day"] = key
                 newReminder["Time"] = value
                 print(key)
@@ -153,6 +163,10 @@ class AddMedicineController: UIViewController, addDayDelegate, UINavigationContr
                         print("Reminder is inserted into the database")
                     }else{
                         print("Error saving data on the icloud" + error.debugDescription)
+                        let alertController =  UIAlertController(title: "Login required", message: "Please login using your Apple ID", preferredStyle: UIAlertControllerStyle.Alert)
+                        
+                        alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+                        self.presentViewController(alertController, animated: true, completion: nil)
                     }
                 })
 
