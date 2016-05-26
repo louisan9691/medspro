@@ -76,7 +76,7 @@ class ScheduleViewController: UIViewController {
   
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadData()
+       loadData()
         //Click menu button to slide out side menu
         if self.revealViewController() != nil{
             menuButton.target = self.revealViewController()
@@ -91,95 +91,34 @@ class ScheduleViewController: UIViewController {
     func loadData(){
         
         
-//        let predicate = NSPredicate(format: "%K == %@", "Day", "Tuesday")
-//        let query = CKQuery(recordType: "Reminder", predicate: predicate)
-//        publicDB.performQuery(query, inZoneWithID: nil) {
-//            (records, error) in
-//            if error != nil{
-//                print(error)
-//                
-//            }else{
-//                print(records)
-//                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//                    self.tableView.reloadData()
-//                })
-//            }
-//            
-//            
-//            for records in records!{
-//                self.list.append(records)
-//            }
-//            
-//            print("Found \(self.list.count) records matching query")
-//            let a = self.list[0].valueForKey("med")!
-//            print(a)
-//            print(self.list[0].valueForKey("Day")!)
-//            
-//        }
-//        print(list)
         
-//        let predicate = NSPredicate(format: "%K == %@", "medName", "999")
-//       // let predicate = NSPredicate(format: "TRUEPREDICATE", argumentArray: nil)
-//        let query = CKQuery(recordType: "Medicine", predicate: predicate)
-//        publicDB.performQuery(query, inZoneWithID: nil) { (records, error) in
-//            if error != nil{
-//                print(error)
-//                }else{
-//                print(records)
-//                }
-//            
-//            
-//            
-//            let record : CKRecord = records![0]
-//            let predicate = NSPredicate(format: "med == %@", record)
-//
-//            let query1 = CKQuery(recordType: "Reminder", predicate: predicate)
-//            self.publicDB.performQuery(query1, inZoneWithID: nil) { (records, error) in
-//                if error != nil{
-//                    print(error)
-//                    
-//                }else{
-//                    for record in records!{
-//                        print(record.objectForKey("Day")!)
-//                        print(record.objectForKey("Time")!)
-//                    }
-//
-//            
-//        
-//                }}}
-//        
-                let predicate = NSPredicate(format: "%K == %@", "Day", "Sunday")
-               // let predicate = NSPredicate(format: "TRUEPREDICATE", argumentArray: nil)
-                let query = CKQuery(recordType: "Reminder", predicate: predicate)
-                publicDB.performQuery(query, inZoneWithID: nil) { (records, error) in
-                    if error != nil{
-                        print(error)
-                        }else{
-                        print(records)
-                        }
-        
-        
-        
-                    let record : CKRecord = records![0]
-                    let predicate = NSPredicate(format: "recordID == %@", record)
-        
-                    let query1 = CKQuery(recordType: "Medicine", predicate: predicate)
+       // let predicate = NSPredicate(format: "%K == %@", "medName", "Vit a")
+       let predicate = NSPredicate(format: "TRUEPREDICATE", argumentArray: nil)
+        let query = CKQuery(recordType: "Medicine", predicate: predicate)
+        publicDB.performQuery(query, inZoneWithID: nil) { (records, error) in
+            if error != nil{
+                print(error)
+                }else{
+               // print(records)
+                let record: CKRecord = records![1]
+                //for record in records!{
+                    
+                    print(record.objectForKey("medName"))
+                
+                    let predicate = NSPredicate(format: "med == %@", record)
+                    let query1 = CKQuery(recordType: "Reminder", predicate: predicate)
                     self.publicDB.performQuery(query1, inZoneWithID: nil) { (records, error) in
                         if error != nil{
                             print(error)
-        
+                            
                         }else{
                             for record in records!{
-                                print(record.objectForKey("medName")!)
-                               // print(record.objectForKey("Time")!)
-                            }
-        
-                    
-                
-                        }}}
-                
-
-        
- 
+                                print(record.objectForKey("Day")!)
+                        }
+            
+                    }
+                }
+            }
+        }        
     }
 }

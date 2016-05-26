@@ -100,6 +100,8 @@ class AddMedicineController: UIViewController, addDayDelegate, UINavigationContr
     
     //Save data button
     @IBAction func saveButton(sender: AnyObject) {
+        
+        
         if (medNameLabel.text!.isEmpty) || (medDosageLabel.text!.isEmpty){
             let alertController =  UIAlertController(title: "Missing Field", message: "Please enter you medicine details", preferredStyle: UIAlertControllerStyle.Alert)
             
@@ -115,26 +117,6 @@ class AddMedicineController: UIViewController, addDayDelegate, UINavigationContr
             newMedicine["medNote"] = medNoteLabel.text!
             newMedicine["medPrescription"] = medPrescriptionDateLabel.text!
             newMedicine["medNumberOfPills"] = Int(medNumberOfPillsLabel.text!)
-            
-            
-            //Loop through every photo
-            if(photoList!.count > 0){
-                    let image = photoList![0] as! UIImage
-                    let fileManager = NSFileManager.defaultManager()
-                    let dir = fileManager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
-                    let file = dir[0].URLByAppendingPathComponent("image").path
-                    UIImagePNGRepresentation(image)?.writeToFile(file!, atomically: true)
-                    let imageURL = NSURL.fileURLWithPath(file!)
-                    let imageAsset = CKAsset(fileURL: imageURL)
-                    print (imageAsset)
-                   // let i = 1
-                    newMedicine["medImage"] = imageAsset
-                   // CKModifyRecordsOperation.init(recordsToSave: <#T##[CKRecord]?#>, recordIDsToDelete: nil)
-            
-            }
-            
-            
-           
             publicDB.saveRecord(newMedicine, completionHandler: {(record:CKRecord?, error:NSError?) -> Void in
                 if error == nil{
                      print("Medicine is inserted into the database")
@@ -146,8 +128,8 @@ class AddMedicineController: UIViewController, addDayDelegate, UINavigationContr
                     self.presentViewController(alertController, animated: true, completion: nil)
                 }
             })
-            
            
+            
             for(key,value) in reminder{
                 let newReminder = CKRecord(recordType: "Reminder")
                 
@@ -173,9 +155,48 @@ class AddMedicineController: UIViewController, addDayDelegate, UINavigationContr
                 })
 
             }
+            
+            
+            
+            //Loop through every photo
+//            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+//                if(self.photoList!.count > 0){
+//                    let newPhoto = CKRecord(recordType: "Photo")
+//                    let image = self.photoList![0] as! UIImage
+//                    let fileManager = NSFileManager.defaultManager()
+//                    let dir = fileManager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
+//                    let file = dir[0].URLByAppendingPathComponent("image").path
+//                    UIImagePNGRepresentation(image)?.writeToFile(file!, atomically: true)
+//                    let imageURL = NSURL.fileURLWithPath(file!)
+//                    let imageAsset = CKAsset(fileURL: imageURL)
+//                    print (imageAsset)
+//                    // let i = 1
+//                    newPhoto["medImage"] = imageAsset
+//                    
+//                    let medReference = CKReference(record: newMedicine, action: CKReferenceAction.DeleteSelf)
+//                    newPhoto["med"] = medReference
+//                    
+//                    
+//                    self.publicDB.saveRecord(newPhoto, completionHandler: {(record:CKRecord?, error:NSError?) -> Void in
+//                        if error == nil{
+//                            print("Reminder is inserted into the database")
+//                        }else{
+//                            print("Error saving data on the icloud" + error.debugDescription)
+//                            let alertController =  UIAlertController(title: "Login required", message: "Please login using your Apple ID", preferredStyle: UIAlertControllerStyle.Alert)
+//                            
+//                            alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+//                            self.presentViewController(alertController, animated: true, completion: nil)
+//                        }
+//                    })
+//                    
+//                }
+//            })
+            
 
-            
-            
+        
+        
+        
+
             self.navigationController!.popViewControllerAnimated(true)
 
             
