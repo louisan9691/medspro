@@ -91,7 +91,6 @@ class AddMedicineController: UIViewController, addDayDelegate, UINavigationContr
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(resuseIdentifier, forIndexPath: indexPath) as! PhotoCell
         let img = photoList!.objectAtIndex(indexPath.row)
         cell.photoView!.image = img as? UIImage
-        //print("avbbc")
         return cell
     }
     
@@ -117,6 +116,8 @@ class AddMedicineController: UIViewController, addDayDelegate, UINavigationContr
             newMedicine["medPrescription"] = medPrescriptionDateLabel.text!
             newMedicine["medNumberOfPills"] = Int(medNumberOfPillsLabel.text!)
             
+            
+            //Loop through every photo
             if(photoList!.count > 0){
                     let image = photoList![0] as! UIImage
                     let fileManager = NSFileManager.defaultManager()
@@ -126,8 +127,9 @@ class AddMedicineController: UIViewController, addDayDelegate, UINavigationContr
                     let imageURL = NSURL.fileURLWithPath(file!)
                     let imageAsset = CKAsset(fileURL: imageURL)
                     print (imageAsset)
-                    
+                   // let i = 1
                     newMedicine["medImage"] = imageAsset
+                   // CKModifyRecordsOperation.init(recordsToSave: <#T##[CKRecord]?#>, recordIDsToDelete: nil)
             
             }
             

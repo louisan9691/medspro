@@ -29,3 +29,6 @@ class UserViewController: UIViewController {
     
 
 }
+
+//viewdidload
+// list.[0] = textfield after save data

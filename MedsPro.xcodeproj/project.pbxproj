@@ -21,6 +21,7 @@
 		FC82E7C51CF5F94E004BA6A0 /* MedicineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC82E7C41CF5F94E004BA6A0 /* MedicineViewController.swift */; };
 		FC82E7C71CF5FB69004BA6A0 /* MeasurementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC82E7C61CF5FB69004BA6A0 /* MeasurementsViewController.swift */; };
 		FC82E7C91CF5FD32004BA6A0 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC82E7C81CF5FD32004BA6A0 /* UserViewController.swift */; };
+		FC82E7CB1CF6030F004BA6A0 /* ScheduleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC82E7CA1CF6030F004BA6A0 /* ScheduleCell.swift */; };
 		FC8D7C751CF1E9F000FB5E53 /* ReminderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8D7C741CF1E9F000FB5E53 /* ReminderCell.swift */; };
 		FC8D7C771CF1EA8A00FB5E53 /* AddMedicineController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8D7C761CF1EA8A00FB5E53 /* AddMedicineController.swift */; };
 		FC8D7C791CF2093100FB5E53 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8D7C781CF2093100FB5E53 /* PhotoViewController.swift */; };
@@ -77,6 +78,7 @@
 		FC82E7C41CF5F94E004BA6A0 /* MedicineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedicineViewController.swift; sourceTree = "<group>"; };
 		FC82E7C61CF5FB69004BA6A0 /* MeasurementsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementsViewController.swift; sourceTree = "<group>"; };
 		FC82E7C81CF5FD32004BA6A0 /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
+		FC82E7CA1CF6030F004BA6A0 /* ScheduleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleCell.swift; sourceTree = "<group>"; };
 		FC8D7C741CF1E9F000FB5E53 /* ReminderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderCell.swift; sourceTree = "<group>"; };
 		FC8D7C761CF1EA8A00FB5E53 /* AddMedicineController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddMedicineController.swift; sourceTree = "<group>"; };
 		FC8D7C781CF2093100FB5E53 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				FC3BB2691CD4E8C60073875F /* Info.plist */,
 				FC3BB2611CD4E8C60073875F /* MedsPro.xcdatamodeld */,
 				FC8D7C941CF369A000FB5E53 /* ScheduleViewController.swift */,
+				FC82E7CA1CF6030F004BA6A0 /* ScheduleCell.swift */,
 				FC1992261CF0C4F500588B9C /* AddReminderViewController.swift */,
 				FC1992281CF0C50E00588B9C /* Reminder.swift */,
 				FC19922A1CF0C61C00588B9C /* DayCell.swift */,
@@ -162,9 +165,9 @@
 				FC82E7C61CF5FB69004BA6A0 /* MeasurementsViewController.swift */,
 				FC8D7C761CF1EA8A00FB5E53 /* AddMedicineController.swift */,
 				FC82E7C81CF5FD32004BA6A0 /* UserViewController.swift */,
-				FC8D7C961CF37C6B00FB5E53 /* SideMenu */,
 				FC8D7C781CF2093100FB5E53 /* PhotoViewController.swift */,
 				FC8D7C7A1CF20C4C00FB5E53 /* PhotoCell.swift */,
+				FC8D7C961CF37C6B00FB5E53 /* SideMenu */,
 				FC8D7C7C1CF33EAD00FB5E53 /* SWRevealViewController */,
 			);
 			path = MedsPro;
@@ -364,6 +367,7 @@
 				FC3BB25B1CD4E8C60073875F /* AppDelegate.swift in Sources */,
 				FC8D7CA21CF3852700FB5E53 /* DoctorInfoCell.swift in Sources */,
 				FC8D7C9A1CF380CF00FB5E53 /* ChangeAccountViewController.swift in Sources */,
+				FC82E7CB1CF6030F004BA6A0 /* ScheduleCell.swift in Sources */,
 				FC8D7C791CF2093100FB5E53 /* PhotoViewController.swift in Sources */,
 				FC8D7C9E1CF3845900FB5E53 /* DoctorTableViewController.swift in Sources */,
 				FC8D7CAA1CF38C1700FB5E53 /* SettingTableViewController.swift in Sources */,

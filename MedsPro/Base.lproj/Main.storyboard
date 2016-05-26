@@ -29,12 +29,15 @@
                                     <segment title="Sat"/>
                                     <segment title="Sun"/>
                                 </segments>
+                                <connections>
+                                    <action selector="segmentedControlAction:" destination="EZe-DW-zkM" eventType="valueChanged" id="uZN-VC-3eH"/>
+                                </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WnU-h1-GI0">
-                                <rect key="frame" x="20" y="108" width="560" height="391"/>
+                                <rect key="frame" x="20" y="108" width="560" height="342"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ScheduleCell" textLabel="nyZ-F1-UTx" detailTextLabel="dGC-eo-It9" style="IBUITableViewCellStyleSubtitle" id="f4f-QF-R2t">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ScheduleCell" textLabel="nyZ-F1-UTx" detailTextLabel="dGC-eo-It9" style="IBUITableViewCellStyleSubtitle" id="f4f-QF-R2t" customClass="ScheduleCell" customModule="MedsPro" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="560" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="f4f-QF-R2t" id="UNg-MN-CGW">
@@ -57,8 +60,16 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="medNameLabel" destination="nyZ-F1-UTx" id="97t-NC-Mfx"/>
+                                            <outlet property="medNoOfPillsLabel" destination="dGC-eo-It9" id="xqn-xv-yv9"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="EZe-DW-zkM" id="Bi5-K5-kmX"/>
+                                    <outlet property="delegate" destination="EZe-DW-zkM" id="ilg-az-pZM"/>
+                                </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rT8-he-SsE">
                                 <rect key="frame" x="279" y="507" width="42" height="36"/>
@@ -78,9 +89,9 @@
                             <constraint firstItem="WnU-h1-GI0" firstAttribute="trailing" secondItem="UeF-iH-Kcd" secondAttribute="trailingMargin" id="90S-De-M9b"/>
                             <constraint firstItem="c79-i1-IyE" firstAttribute="leading" secondItem="UeF-iH-Kcd" secondAttribute="leadingMargin" id="L3J-GG-dkt"/>
                             <constraint firstItem="c79-i1-IyE" firstAttribute="trailing" secondItem="WnU-h1-GI0" secondAttribute="trailing" id="SdY-Xi-pue"/>
-                            <constraint firstItem="rT8-he-SsE" firstAttribute="top" secondItem="WnU-h1-GI0" secondAttribute="bottom" constant="8" symbolic="YES" id="Xrf-aw-75T"/>
+                            <constraint firstItem="rT8-he-SsE" firstAttribute="top" secondItem="WnU-h1-GI0" secondAttribute="bottom" constant="57" id="Xrf-aw-75T"/>
                             <constraint firstItem="c79-i1-IyE" firstAttribute="leading" secondItem="WnU-h1-GI0" secondAttribute="leading" id="cX9-UJ-ynD"/>
-                            <constraint firstItem="i08-wJ-tbj" firstAttribute="top" secondItem="rT8-he-SsE" secondAttribute="bottom" constant="57" id="lVb-er-9zO"/>
+                            <constraint firstItem="i08-wJ-tbj" firstAttribute="top" secondItem="rT8-he-SsE" secondAttribute="bottom" constant="8" id="lVb-er-9zO"/>
                             <constraint firstItem="WnU-h1-GI0" firstAttribute="centerX" secondItem="rT8-he-SsE" secondAttribute="centerX" id="oaK-iQ-zbV"/>
                             <constraint firstItem="WnU-h1-GI0" firstAttribute="top" secondItem="c79-i1-IyE" secondAttribute="bottom" constant="8" symbolic="YES" id="oeE-mq-x9d"/>
                             <constraint firstItem="c79-i1-IyE" firstAttribute="top" secondItem="Zw8-FB-MFT" secondAttribute="bottom" constant="8" symbolic="YES" id="yYf-1u-o77"/>
@@ -92,6 +103,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="menuButton" destination="VvH-U7-LTu" id="2Dq-Lx-dYm"/>
+                        <outlet property="segmentedControlOutlet" destination="c79-i1-IyE" id="v8q-99-VgX"/>
+                        <outlet property="tableView" destination="WnU-h1-GI0" id="sS1-kK-rPb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KPA-Vf-HOI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1549,7 +1562,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="axO-VA-itw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2178" y="1221"/>
+            <point key="canvasLocation" x="2196" y="1213"/>
         </scene>
         <!--Medicine-->
         <scene sceneID="Pp4-CA-xh6">
