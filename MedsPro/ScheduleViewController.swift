@@ -93,32 +93,60 @@ class ScheduleViewController: UIViewController {
         
         
        // let predicate = NSPredicate(format: "%K == %@", "medName", "Vit a")
-       let predicate = NSPredicate(format: "TRUEPREDICATE", argumentArray: nil)
+       let predicate = NSPredicate(format: "TRUEPREDICATE", argumentArray: nil) 
         let query = CKQuery(recordType: "Medicine", predicate: predicate)
-        publicDB.performQuery(query, inZoneWithID: nil) { (records, error) in
+        publicDB.performQuery(query, inZoneWithID: nil) { (medicine, error) in
             if error != nil{
                 print(error)
                 }else{
-               // print(records)
-                let record: CKRecord = records![1]
-                //for record in records!{
-                    
-                    print(record.objectForKey("medName"))
-                
-                    let predicate = NSPredicate(format: "med == %@", record)
-                    let query1 = CKQuery(recordType: "Reminder", predicate: predicate)
-                    self.publicDB.performQuery(query1, inZoneWithID: nil) { (records, error) in
+                    for i in 0 ..< medicine!.count{
+                    let currentReminder: CKRecord = medicine![i]
+                 //   print(currentReminder.objectForKey("medName")!)
+                        
+                        
+                    let predicate = NSPredicate(format: "med == %@", currentReminder)
+                    let query = CKQuery(recordType: "Reminder", predicate: predicate)
+                    self.publicDB.performQuery(query, inZoneWithID: nil) { (reminders, error) in
                         if error != nil{
                             print(error)
-                            
                         }else{
-                            for record in records!{
-                                print(record.objectForKey("Day")!)
+                            for reminder in reminders!{
+                                print(reminder.objectForKey("Day")!)
+                                print(reminder.objectForKey("Time")!)
+                            }
+                            
                         }
-            
-                    }
-                }
+                        print(currentReminder.objectForKey("medName")!)
+                   }
+               }
+                
             }
-        }        
+        }
+        self.tableView.reloadData()
+
     }
+    
+
 }
+
+//var objects = [
+//    ["name" : "Item 1", "image": "image1.png"],
+//    ["name" : "Item 2", "image": "image2.png"],
+//    ["name" : "Item 3", "image": "image3.png"]]
+//
+//override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//    return objects.count
+//}
+//
+//override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+//    
+//    let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
+//    
+//    let object = objects[indexPath.row]
+//    
+//    cell.textLabel?.text =  object["name"]!
+//    cell.imageView?.image = UIImage(named: object["image"]!)
+//    cell.otherLabel?.text =  object["otherProperty"]!
+//}
+//
+//}

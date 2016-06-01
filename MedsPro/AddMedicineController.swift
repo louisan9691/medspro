@@ -20,6 +20,7 @@ class AddMedicineController: UIViewController, addDayDelegate, UINavigationContr
     var reminder = [String:NSDate]()
     
     let publicDB = CKContainer.defaultContainer().publicCloudDatabase
+   
     
     required init?(coder aDecoder: NSCoder){
         self.currentReminder = NSMutableArray()
@@ -126,6 +127,7 @@ class AddMedicineController: UIViewController, addDayDelegate, UINavigationContr
                     
                     alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
                     self.presentViewController(alertController, animated: true, completion: nil)
+                   
                 }
             })
            
@@ -136,7 +138,7 @@ class AddMedicineController: UIViewController, addDayDelegate, UINavigationContr
                 //Establish relationship 1-M with medicine
                 let medReference = CKReference(record: newMedicine, action: CKReferenceAction.DeleteSelf)
                 newReminder["med"] = medReference
-                
+                //Insert records into Reminder
                 newReminder["Day"] = key
                 newReminder["Time"] = value
                 print(key)
@@ -151,6 +153,7 @@ class AddMedicineController: UIViewController, addDayDelegate, UINavigationContr
                         
                         alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
                         self.presentViewController(alertController, animated: true, completion: nil)
+                       
                     }
                 })
 
@@ -159,48 +162,41 @@ class AddMedicineController: UIViewController, addDayDelegate, UINavigationContr
             
             
             //Loop through every photo
-//            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//                if(self.photoList!.count > 0){
-//                    let newPhoto = CKRecord(recordType: "Photo")
-//                    let image = self.photoList![0] as! UIImage
-//                    let fileManager = NSFileManager.defaultManager()
-//                    let dir = fileManager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
-//                    let file = dir[0].URLByAppendingPathComponent("image").path
-//                    UIImagePNGRepresentation(image)?.writeToFile(file!, atomically: true)
-//                    let imageURL = NSURL.fileURLWithPath(file!)
-//                    let imageAsset = CKAsset(fileURL: imageURL)
-//                    print (imageAsset)
-//                    // let i = 1
-//                    newPhoto["medImage"] = imageAsset
-//                    
-//                    let medReference = CKReference(record: newMedicine, action: CKReferenceAction.DeleteSelf)
-//                    newPhoto["med"] = medReference
-//                    
-//                    
-//                    self.publicDB.saveRecord(newPhoto, completionHandler: {(record:CKRecord?, error:NSError?) -> Void in
-//                        if error == nil{
-//                            print("Reminder is inserted into the database")
-//                        }else{
-//                            print("Error saving data on the icloud" + error.debugDescription)
-//                            let alertController =  UIAlertController(title: "Login required", message: "Please login using your Apple ID", preferredStyle: UIAlertControllerStyle.Alert)
-//                            
-//                            alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-//                            self.presentViewController(alertController, animated: true, completion: nil)
-//                        }
-//                    })
-//                    
-//                }
-//            })
-            
-
-        
-        
-        
-
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                if(self.photoList!.count > 0){
+                    let newPhoto = CKRecord(recordType: "Photo")
+                    let image = self.photoList![0] as! UIImage
+                    let fileManager = NSFileManager.defaultManager()
+                    let dir = fileManager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
+                    let file = dir[0].URLByAppendingPathComponent("image").path
+                    UIImagePNGRepresentation(image)?.writeToFile(file!, atomically: true)
+                    let imageURL = NSURL.fileURLWithPath(file!)
+                    let imageAsset = CKAsset(fileURL: imageURL)
+                    print (imageAsset)
+                    // let i = 1
+                    newPhoto["medImage"] = imageAsset
+                    
+                    let medReference = CKReference(record: newMedicine, action: CKReferenceAction.DeleteSelf)
+                    newPhoto["med"] = medReference
+                    
+                    
+                    self.publicDB.saveRecord(newPhoto, completionHandler: {(record:CKRecord?, error:NSError?) -> Void in
+                        if error == nil{
+                            print("Photo is inserted into the database")
+                        }else{
+                            print("Error saving data on the icloud" + error.debugDescription)
+                            let alertController =  UIAlertController(title: "Login required", message: "Please login using your Apple ID", preferredStyle: UIAlertControllerStyle.Alert)
+                            
+                            alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+                            self.presentViewController(alertController, animated: true, completion: nil)
+                        }
+                    })
+                    
+                }
+            })
             self.navigationController!.popViewControllerAnimated(true)
-
-            
         }
+        
     }
     
     
@@ -225,12 +221,7 @@ class AddMedicineController: UIViewController, addDayDelegate, UINavigationContr
         cell.reminderLabel.text = r.day!
         cell.timeLabel.text = r.getFormattedDate()
         reminder[r.day!] = r.time!
-//        print(reminder)
-//        for (value,key) in reminder{
-//            print (value)
-//            print(key)
-//        }
-        
+
    
         return cell
     }
@@ -274,6 +265,7 @@ class AddMedicineController: UIViewController, addDayDelegate, UINavigationContr
     override func viewDidLoad() {
         super.viewDidLoad()
         roundedButton()
+        
     }
     
 
@@ -291,5 +283,7 @@ class AddMedicineController: UIViewController, addDayDelegate, UINavigationContr
        btnRounded.layer.cornerRadius = 5
        
     }
+    
+    
   
 }
