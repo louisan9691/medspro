@@ -17,15 +17,12 @@ class ScheduleViewController: UIViewController {
     
     let publicDB = CKContainer.defaultContainer().publicCloudDatabase
     var list = [CKRecord]()
+    var reminderDict = [String:NSDate]()
+    var scheduleDict = [String:[String:NSDate]]()
+    var abc = ["a":"ant","b":"bee","c":"chicken"]
+    var a = String()
     
    
-    
-//    required init?(coder aDecoder: NSCoder) {
-//        self.list = Array<CKRecord>()
-//        super.init(coder: aDecoder)
-//    }
-    
-    //Initialise database container
     
     
     
@@ -40,7 +37,7 @@ class ScheduleViewController: UIViewController {
     
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.list.count
+        return self.abc.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -49,12 +46,15 @@ class ScheduleViewController: UIViewController {
         
         let cellIdentifier = "ScheduleCell"
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:  indexPath) as! ScheduleCell
-        let record: CKRecord = list[indexPath.row]
-        cell.medNameLabel.text! = record.valueForKey("Day") as! String
+            let key   = Array(self.abc.keys)[indexPath.row]
+            let value = Array(self.abc.values)[indexPath.row]
+        cell.medNameLabel.text! = key
         
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "MMMM dd, yyyy, hh:mm"
-        cell.medNoOfPillsLabel.text! = dateFormatter.stringFromDate(record.valueForKey("Time") as! NSDate)
+        cell.medNoOfPillsLabel.text! = value
+        
+        //dateFormatter.stringFromDate(record.valueForKey("Time") as! NSDate)
         
         
         return cell
@@ -76,77 +76,76 @@ class ScheduleViewController: UIViewController {
   
     override func viewDidLoad() {
         super.viewDidLoad()
-       loadData()
+       
+        
+        loadData()
         //Click menu button to slide out side menu
         if self.revealViewController() != nil{
             menuButton.target = self.revealViewController()
             menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
             
-        
+       
         }
         
     }
     
+    
     func loadData(){
+        reminderDict = [String:NSDate]()
+        scheduleDict = [String:[String:NSDate]]()
         
-        
-        
-       // let predicate = NSPredicate(format: "%K == %@", "medName", "Vit a")
-       let predicate = NSPredicate(format: "TRUEPREDICATE", argumentArray: nil) 
+       let predicate = NSPredicate(value: true)
         let query = CKQuery(recordType: "Medicine", predicate: predicate)
         publicDB.performQuery(query, inZoneWithID: nil) { (medicine, error) in
             if error != nil{
-                print(error)
+                        dispatch_async(dispatch_get_main_queue()) {
+                        print("Cloud Error")
+                    }
                 }else{
+
                     for i in 0 ..< medicine!.count{
-                    let currentReminder: CKRecord = medicine![i]
-                 //   print(currentReminder.objectForKey("medName")!)
-                        
-                        
-                    let predicate = NSPredicate(format: "med == %@", currentReminder)
-                    let query = CKQuery(recordType: "Reminder", predicate: predicate)
-                    self.publicDB.performQuery(query, inZoneWithID: nil) { (reminders, error) in
-                        if error != nil{
-                            print(error)
-                        }else{
-                            for reminder in reminders!{
-                                print(reminder.objectForKey("Day")!)
-                                print(reminder.objectForKey("Time")!)
-                            }
-                            
+                        let currentReminder: CKRecord = medicine![i]
+                        print(currentReminder.objectForKey("medName") as! String)
+                        let predicate = NSPredicate(format: "med == %@", currentReminder)
+                        let query = CKQuery(recordType: "Reminder", predicate: predicate)
+                        self.publicDB.performQuery(query, inZoneWithID: nil) { (reminders, error) in
+                            if error != nil{
+                                dispatch_async(dispatch_get_main_queue()) {
+                                    print("Cloud Error")
+                                }
+                            }else{
+                                    for reminder in reminders!{
+                                        self.a = "ACASD"
+                                        self.reminderDict[reminder.objectForKey("Day") as! String] = reminder.objectForKey("Time") as? NSDate
+                                        //print(self.reminderDict)
+                                    }
+                                }
+                                self.scheduleDict[currentReminder.objectForKey("medName") as! String] = self.reminderDict
+                                print(self.scheduleDict)
                         }
-                        print(currentReminder.objectForKey("medName")!)
-                   }
-               }
-                
+                    }
+                }
             }
+        
+        
+        dispatch_async(dispatch_get_main_queue()) {
+            print(self.reminderDict)
+            print(self.scheduleDict)
+            self.tableView.reloadData()
         }
-        self.tableView.reloadData()
+       
 
     }
     
 
 }
 
-//var objects = [
-//    ["name" : "Item 1", "image": "image1.png"],
-//    ["name" : "Item 2", "image": "image2.png"],
-//    ["name" : "Item 3", "image": "image3.png"]]
-//
-//override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//    return objects.count
-//}
-//
-//override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+//func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
+//    let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! UITableViewCell
 //    
-//    let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
-//    
-//    let object = objects[indexPath.row]
-//    
-//    cell.textLabel?.text =  object["name"]!
-//    cell.imageView?.image = UIImage(named: object["image"]!)
-//    cell.otherLabel?.text =  object["otherProperty"]!
+//    var key   = Array(self.dic.keys)[indexPath.row]
+//    var value = Array(self.dic.values)[indexPath.row]
+//    cell.text = key + value
 //}
-//
-//}
+
