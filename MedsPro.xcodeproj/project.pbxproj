@@ -17,6 +17,7 @@
 		FC3BB2681CD4E8C60073875F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC3BB2661CD4E8C60073875F /* LaunchScreen.storyboard */; };
 		FC3BB2731CD4E8C60073875F /* MedsProTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3BB2721CD4E8C60073875F /* MedsProTests.swift */; };
 		FC3BB27E1CD4E8C60073875F /* MedsProUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3BB27D1CD4E8C60073875F /* MedsProUITests.swift */; };
+		FC769E851D081113006A96CF /* MedicineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC769E841D081113006A96CF /* MedicineCell.swift */; };
 		FC82E7C31CF3D81E004BA6A0 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC82E7C21CF3D81E004BA6A0 /* CloudKit.framework */; };
 		FC82E7C51CF5F94E004BA6A0 /* MedicineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC82E7C41CF5F94E004BA6A0 /* MedicineViewController.swift */; };
 		FC82E7C71CF5FB69004BA6A0 /* MeasurementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC82E7C61CF5FB69004BA6A0 /* MeasurementsViewController.swift */; };
@@ -73,6 +74,7 @@
 		FC3BB2791CD4E8C60073875F /* MedsProUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MedsProUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC3BB27D1CD4E8C60073875F /* MedsProUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedsProUITests.swift; sourceTree = "<group>"; };
 		FC3BB27F1CD4E8C60073875F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FC769E841D081113006A96CF /* MedicineCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedicineCell.swift; sourceTree = "<group>"; };
 		FC82E7BF1CF3CFF4004BA6A0 /* MedsPro.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = MedsPro.entitlements; sourceTree = "<group>"; };
 		FC82E7C21CF3D81E004BA6A0 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		FC82E7C41CF5F94E004BA6A0 /* MedicineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedicineViewController.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 				FC82E7C81CF5FD32004BA6A0 /* UserViewController.swift */,
 				FC8D7C781CF2093100FB5E53 /* PhotoViewController.swift */,
 				FC8D7C7A1CF20C4C00FB5E53 /* PhotoCell.swift */,
+				FC769E841D081113006A96CF /* MedicineCell.swift */,
 				FC8D7C961CF37C6B00FB5E53 /* SideMenu */,
 				FC8D7C7C1CF33EAD00FB5E53 /* SWRevealViewController */,
 			);
@@ -360,6 +363,7 @@
 				FC3BB2631CD4E8C60073875F /* MedsPro.xcdatamodeld in Sources */,
 				FC8D7C7B1CF20C4C00FB5E53 /* PhotoCell.swift in Sources */,
 				FC8D7C751CF1E9F000FB5E53 /* ReminderCell.swift in Sources */,
+				FC769E851D081113006A96CF /* MedicineCell.swift in Sources */,
 				FC8D7CAC1CF38DD900FB5E53 /* FeedbackViewController.swift in Sources */,
 				FC1992271CF0C4F500588B9C /* AddReminderViewController.swift in Sources */,
 				FC19922B1CF0C61C00588B9C /* DayCell.swift in Sources */,
