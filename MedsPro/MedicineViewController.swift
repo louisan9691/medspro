@@ -12,10 +12,9 @@ import CloudKit
 class MedicineViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-
     @IBOutlet weak var menuButton: UIBarButtonItem!
-    
     var medicineList = [CKRecord]()
+    var refreshControl: UIRefreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,10 +25,30 @@ class MedicineViewController: UIViewController {
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
         loadData()
-    }
-
+        tableView.reloadData()
 
     
+
+        //Pull to refresh
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(ScheduleViewController.refresh), forControlEvents: UIControlEvents.ValueChanged)
+        self.tableView.addSubview(refreshControl)
+}
+
+
+    //refresh function
+    func refresh (){
+    dispatch_async(dispatch_get_main_queue()) {
+        
+        //Clear medicineList otherwise medicineList.count will be doubled. Pull refresh will duplicate data
+        self.medicineList.removeAll()
+        self.loadData()
+        self.tableView.reloadData()
+        self.refreshControl.endRefreshing()
+    }
+}
+
+
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -73,24 +92,20 @@ class MedicineViewController: UIViewController {
         let publicDB = CKContainer.defaultContainer().publicCloudDatabase
         let predicate = NSPredicate(value: true)
         let query = CKQuery(recordType: "Medicine", predicate: predicate)
-        publicDB.performQuery(query, inZoneWithID: nil) { (medicines, error) in
+        publicDB.performQuery(query, inZoneWithID: nil) { (medicines, error) in                         
             if error != nil{
                 print(error)
             }else{
-                                for medicine in medicines!{
-                                  
-                                    self.medicineList.append(medicine)
-                                }
-                                print(self.medicineList)
-                
-                                    NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-                                        self.tableView.reloadData()
-                
-                                    })
-                                    
-                                }
-                            }
-                        }
+                    for medicine in medicines!{
+                                self.medicineList.append(medicine)
                     }
+                    print(self.medicineList.count)
+                    NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                    self.tableView.reloadData()
+                })
+            }
+        }
+    }
+}
 
 

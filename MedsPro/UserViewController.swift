@@ -227,8 +227,7 @@ class UserViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                         }
                         
                         //Run this on main thread. It is supposed to help dowloading the picture quicker
-                        dispatch_async(dispatch_get_main_queue()) {
-                            
+                        dispatch_async(dispatch_get_main_queue()) {                 
                             let photo =
                                 user!.objectForKey("userImage") as! CKAsset
                             

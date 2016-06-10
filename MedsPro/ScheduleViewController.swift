@@ -14,6 +14,7 @@ class ScheduleViewController: UIViewController {
     @IBOutlet weak var menuButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var segmentedControlOutlet: UISegmentedControl!
+    var refreshControl: UIRefreshControl = UIRefreshControl()
     
     
     
@@ -25,23 +26,33 @@ class ScheduleViewController: UIViewController {
    
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.reloadData()
+        
         //Click menu button to slide out side menu
         if self.revealViewController() != nil{
             menuButton.target = self.revealViewController()
             menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
-            
-            
         }
         
         loadData()
-        print(arrNotes)
+        tableView.reloadData()
         
+        
+        //Pull to refresh
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(ScheduleViewController.refresh), forControlEvents: UIControlEvents.ValueChanged)
+        self.tableView.addSubview(refreshControl)
     }
     
-
     
+    //refresh function
+    func refresh (){
+         dispatch_async(dispatch_get_main_queue()) {
+        self.loadData()
+        self.tableView.reloadData()
+        self.refreshControl.endRefreshing()
+        }
+    }
     
     @IBAction func segmentedControlAction(sender: UISegmentedControl) {
     }
@@ -118,7 +129,6 @@ class ScheduleViewController: UIViewController {
 //    }
 
 
-
                     for i in 0 ..< medicines!.count{
                         let currentReminder: CKRecord = medicines![i]
                         print(currentReminder.objectForKey("medName") as! String)
@@ -131,11 +141,8 @@ class ScheduleViewController: UIViewController {
                                 print(error)
                             }else{
                                     for reminder in reminders!{
-
                                         self.reminderDict[reminder.objectForKey("Day") as! String] = reminder.objectForKey("Time") as? NSDate
-                                       
                                 }
-                            
                                 self.scheduleDict[currentReminder.objectForKey("medName") as! String] = self.reminderDict
                             
                                 //This is the magic !
@@ -143,12 +150,10 @@ class ScheduleViewController: UIViewController {
                                 self.tableView.reloadData()
                                 print(self.scheduleDict)
                             })
-                            
                         }
                     }
-                
+                }
             }
         }
     }
 }
-               }
