@@ -79,11 +79,30 @@ class MedicineViewController: UIViewController {
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath){
         if editingStyle == .Delete{
             
-            
+            deleteData([medicineList[indexPath.row].recordID])
+            medicineList.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
     }
     
+    
+    //Delete data func
+    //Input array of recordID
+    func deleteData(deleteRecord: [CKRecordID]){
+        let publicDB = CKContainer.defaultContainer().publicCloudDatabase
+        let operation = CKModifyRecordsOperation (recordsToSave: nil, recordIDsToDelete: deleteRecord)
+        operation.savePolicy = .AllKeys
+        operation.modifyRecordsCompletionBlock = { added, deleted, error in
+            if error != nil {
+                print(error) // print error if any
+            } else {
+                print("Deleted Successfully")
+            }
+            
+        }
+        publicDB.addOperation(operation)
+    }
+
     
     
     

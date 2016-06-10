@@ -21,10 +21,7 @@ class ScheduleViewController: UIViewController {
     let date = NSDate()
     let calendar = NSCalendar.currentCalendar()
    
-    
-    
-    var reminderDict = [String:NSDate]()
-    var scheduleDict = [String:[String:NSDate]]()
+
     var Monday: Array<CKRecord> = []
     var Tuesday: Array<CKRecord> = []
     var Wednesday: Array<CKRecord> = []
@@ -87,6 +84,7 @@ class ScheduleViewController: UIViewController {
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControl.addTarget(self, action: #selector(ScheduleViewController.refresh), forControlEvents: UIControlEvents.ValueChanged)
         self.tableView.addSubview(refreshControl)
+        
     }
     
     
@@ -209,13 +207,58 @@ class ScheduleViewController: UIViewController {
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath){
         if editingStyle == .Delete{
             
+            //Delete record in cloudKit using recordID
+            if segmentedControlOutlet.selectedSegmentIndex == 0{
+                deleteData([self.Monday[indexPath.row].recordID])
+                self.Monday.removeAtIndex(indexPath.row)
+            }
+            if segmentedControlOutlet.selectedSegmentIndex == 1{
+                deleteData([self.Tuesday[indexPath.row].recordID])
+                self.Tuesday.removeAtIndex(indexPath.row)
+            }
+            if segmentedControlOutlet.selectedSegmentIndex == 2{
+                deleteData([self.Wednesday[indexPath.row].recordID])
+                self.Wednesday.removeAtIndex(indexPath.row)
+            }
+            if segmentedControlOutlet.selectedSegmentIndex == 3{
+                deleteData([self.Thursday[indexPath.row].recordID])
+                self.Thursday.removeAtIndex(indexPath.row)
+            }
+            if segmentedControlOutlet.selectedSegmentIndex == 4{
+                deleteData([self.Friday[indexPath.row].recordID])
+                self.Friday.removeAtIndex(indexPath.row)
+            }
+            if segmentedControlOutlet.selectedSegmentIndex == 5{
+                deleteData([self.Saturday[indexPath.row].recordID])
+                self.Saturday.removeAtIndex(indexPath.row)
+            }
+            if segmentedControlOutlet.selectedSegmentIndex == 6{
+                deleteData([self.Sunday[indexPath.row].recordID])
+                self.Sunday.removeAtIndex(indexPath.row)
+            }
             
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        }
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)            
     }
+}
 
-
-  
+    //Delete data func
+    //Input array of recordID
+    func deleteData(deleteRecord: [CKRecordID]){
+        let publicDB = CKContainer.defaultContainer().publicCloudDatabase
+        let operation = CKModifyRecordsOperation (recordsToSave: nil, recordIDsToDelete: deleteRecord)
+        operation.savePolicy = .AllKeys
+        operation.modifyRecordsCompletionBlock = { added, deleted, error in
+            if error != nil {
+                print(error) // print error if any
+            } else {
+                print("Deleted Successfully")
+            }
+            
+        }
+        publicDB.addOperation(operation)
+    }
+    
+    
     
     func loadData(){
 
@@ -249,6 +292,7 @@ class ScheduleViewController: UIViewController {
                         self.Sunday.append(medicine)
                     }
                 }
+                
                     NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
                         self.tableView.reloadData()
                     })

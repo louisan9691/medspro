@@ -150,34 +150,6 @@ class AddMedicineController: UIViewController, addDayDelegate, UINavigationContr
       
            
             
-//            for(key,value) in reminder{
-//                let newReminder = CKRecord(recordType: "Reminder")
-//                
-//                //Establish relationship 1-M with medicine
-//                let medReference = CKReference(record: newMedicine, action: CKReferenceAction.DeleteSelf)
-//                newReminder["med"] = medReference
-//                //Insert records into Reminder
-//                newReminder["Day"] = key
-//                newReminder["Time"] = value
-//                print(key)
-//                print(value)
-//                
-//                publicDB.saveRecord(newReminder, completionHandler: {(record:CKRecord?, error:NSError?) -> Void in
-//                    if error == nil{
-//                        print("Reminder is inserted into the database")
-//                    }else{
-//                        print("Error saving data on the icloud" + error.debugDescription)
-//                        let alertController =  UIAlertController(title: "Login required", message: "Please login using your Apple ID", preferredStyle: UIAlertControllerStyle.Alert)
-//                        
-//                        alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-//                        self.presentViewController(alertController, animated: true, completion: nil)
-//                       
-//                    }
-//                })
-//
-//            }
-            
-            
             
             //Loop through every photo
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -297,7 +269,38 @@ class AddMedicineController: UIViewController, addDayDelegate, UINavigationContr
        btnRounded.layer.cornerRadius = 5
        
     }
-    
-    
-  
+
 }
+
+
+
+
+//            for(key,value) in reminder{
+//                let newReminder = CKRecord(recordType: "Reminder")
+//
+//                //Establish relationship 1-M with medicine
+//                let medReference = CKReference(record: newMedicine, action: CKReferenceAction.DeleteSelf)
+//                newReminder["med"] = medReference
+//                //Insert records into Reminder
+//                newReminder["Day"] = key
+//                newReminder["Time"] = value
+//                print(key)
+//                print(value)
+//
+//                publicDB.saveRecord(newReminder, completionHandler: {(record:CKRecord?, error:NSError?) -> Void in
+//                    if error == nil{
+//                        print("Reminder is inserted into the database")
+//                    }else{
+//                        print("Error saving data on the icloud" + error.debugDescription)
+//                        let alertController =  UIAlertController(title: "Login required", message: "Please login using your Apple ID", preferredStyle: UIAlertControllerStyle.Alert)
+//
+//                        alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+//                        self.presentViewController(alertController, animated: true, completion: nil)
+//
+//                    }
+//                })
+//
+//            }
+
+
+
