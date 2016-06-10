@@ -107,7 +107,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="My Schedule" id="wvr-95-D7Q">
                         <barButtonItem key="leftBarButtonItem" image="Menu" id="VvH-U7-LTu"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="fQB-15-Our"/>
                     </navigationItem>
                     <connections>
                         <outlet property="menuButton" destination="VvH-U7-LTu" id="2Dq-Lx-dYm"/>
@@ -1577,8 +1576,8 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0qE-v8-fRj">
                                 <rect key="frame" x="281" y="505" width="38" height="38"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="38" id="JI4-oP-cOX"/>
-                                    <constraint firstAttribute="height" constant="38" id="j2O-pd-kpy"/>
+                                    <constraint firstAttribute="width" constant="38" id="JkW-pS-SdO"/>
+                                    <constraint firstAttribute="height" constant="38" id="KOP-KP-gBx"/>
                                 </constraints>
                                 <state key="normal" title="Button" image="Add button"/>
                                 <connections>
@@ -1586,7 +1585,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="54" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8KU-mY-qhB">
-                                <rect key="frame" x="0.0" y="93" width="600" height="389"/>
+                                <rect key="frame" x="0.0" y="92" width="600" height="389"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MedicineCell" rowHeight="54" id="8AG-AY-5Vq" customClass="MedicineCell" customModule="MedsPro" customModuleProvider="target">
@@ -1675,12 +1674,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="UFf-VE-lib" firstAttribute="top" secondItem="0qE-v8-fRj" secondAttribute="bottom" constant="8" symbolic="YES" id="8SL-7b-6ir"/>
-                            <constraint firstItem="8KU-mY-qhB" firstAttribute="leading" secondItem="Zdh-px-inY" secondAttribute="leading" id="AKz-CA-Os2"/>
-                            <constraint firstAttribute="trailing" secondItem="8KU-mY-qhB" secondAttribute="trailing" id="TSa-pv-KZe"/>
-                            <constraint firstItem="8KU-mY-qhB" firstAttribute="top" secondItem="69R-2z-vDe" secondAttribute="bottom" constant="29" id="X1N-5n-gor"/>
-                            <constraint firstItem="8KU-mY-qhB" firstAttribute="centerX" secondItem="0qE-v8-fRj" secondAttribute="centerX" id="oqy-x1-Olp"/>
-                            <constraint firstItem="0qE-v8-fRj" firstAttribute="top" secondItem="8KU-mY-qhB" secondAttribute="bottom" constant="23" id="vsz-eO-3b6"/>
+                            <constraint firstItem="8KU-mY-qhB" firstAttribute="leading" secondItem="Zdh-px-inY" secondAttribute="leading" id="4IJ-do-wPm"/>
+                            <constraint firstItem="8KU-mY-qhB" firstAttribute="top" secondItem="69R-2z-vDe" secondAttribute="bottom" constant="28" id="4fQ-nE-XQV"/>
+                            <constraint firstItem="UFf-VE-lib" firstAttribute="top" secondItem="0qE-v8-fRj" secondAttribute="bottom" constant="8" symbolic="YES" id="DG6-ec-6Kh"/>
+                            <constraint firstItem="8KU-mY-qhB" firstAttribute="centerX" secondItem="0qE-v8-fRj" secondAttribute="centerX" id="M4g-hX-kQW"/>
+                            <constraint firstItem="0qE-v8-fRj" firstAttribute="top" secondItem="8KU-mY-qhB" secondAttribute="bottom" constant="24" id="cm5-2W-rVl"/>
+                            <constraint firstAttribute="trailing" secondItem="8KU-mY-qhB" secondAttribute="trailing" id="sAn-1z-mM8"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Medicine" id="Poq-uz-7Uo">

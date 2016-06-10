@@ -265,6 +265,7 @@ class ScheduleViewController: UIViewController {
        let publicDB = CKContainer.defaultContainer().publicCloudDatabase
        let predicate = NSPredicate(value: true)
        let query = CKQuery(recordType: "Medicine", predicate: predicate)
+        query.sortDescriptors = [NSSortDescriptor(key: "Time", ascending: true)]
         publicDB.performQuery(query, inZoneWithID: nil) { (medicines, error) in
             if error != nil{
                         print(error)

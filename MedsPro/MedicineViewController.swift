@@ -11,10 +11,23 @@ import CloudKit
 
 class MedicineViewController: UIViewController {
 
+    @IBOutlet weak var searchBar: UITableView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var menuButton: UIBarButtonItem!
     var medicineList = [CKRecord]()
+    
     var refreshControl: UIRefreshControl = UIRefreshControl()
+    let searchController = UISearchController(searchResultsController: nil)
+    var searchMeds = [CKRecord]()
+    
+    func searchContent (searchText: String){
+        searchMeds = medicineList.filter{ med in
+            // search for medName
+            return (med.valueForKey("medName")!).lowercaseString.containsString(searchText.lowercaseString)
+        }
+            self.tableView.reloadData()
+    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,12 +40,16 @@ class MedicineViewController: UIViewController {
         loadData()
         tableView.reloadData()
 
-    
-
         //Pull to refresh
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControl.addTarget(self, action: #selector(ScheduleViewController.refresh), forControlEvents: UIControlEvents.ValueChanged)
         self.tableView.addSubview(refreshControl)
+       
+        //Setup seachBar Layout
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        tableView.tableHeaderView = searchController.searchBar
 }
 
 
@@ -55,6 +72,11 @@ class MedicineViewController: UIViewController {
     
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        //If searchbar is being used
+        if searchController.active && searchController.searchBar.text != "" {
+            return searchMeds.count
+        }
         return self.medicineList.count
     }
     
@@ -62,8 +84,16 @@ class MedicineViewController: UIViewController {
         
         let cellIdentifier = "MedicineCell"
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:  indexPath) as! MedicineCell
-        let record: CKRecord = medicineList[indexPath.row]
-
+        let record: CKRecord
+        
+        //If search bar if being used
+        if searchController.active && searchController.searchBar.text != "" {
+            record = searchMeds[indexPath.row]
+            
+        }else{
+            record = medicineList[indexPath.row]
+        }
+        
         cell.medNameLabel.text! = record.valueForKey("medName") as! String
         cell.medStrengthLabel.text! = record.valueForKey("medStrength") as! String
         cell.medPillLabel.text!  = String(record.valueForKey("medDosage")!)
@@ -79,8 +109,15 @@ class MedicineViewController: UIViewController {
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath){
         if editingStyle == .Delete{
             
-            deleteData([medicineList[indexPath.row].recordID])
-            medicineList.removeAtIndex(indexPath.row)
+            //IF search bar is being used
+            if searchController.active && searchController.searchBar.text != "" {
+               deleteData([searchMeds[indexPath.row].recordID])
+                searchMeds.removeAtIndex(indexPath.row)
+            }else{
+                deleteData([medicineList[indexPath.row].recordID])
+                medicineList.removeAtIndex(indexPath.row)
+            }
+            
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
     }
@@ -111,7 +148,9 @@ class MedicineViewController: UIViewController {
         let publicDB = CKContainer.defaultContainer().publicCloudDatabase
         let predicate = NSPredicate(value: true)
         let query = CKQuery(recordType: "Medicine", predicate: predicate)
-        publicDB.performQuery(query, inZoneWithID: nil) { (medicines, error) in                         
+        //sorting
+        query.sortDescriptors = [NSSortDescriptor(key: "medName", ascending: true)]
+        publicDB.performQuery(query, inZoneWithID: nil) { (medicines, error) in
             if error != nil{
                 print(error)
             }else{
@@ -127,4 +166,8 @@ class MedicineViewController: UIViewController {
     }
 }
 
-
+extension MedicineViewController: UISearchResultsUpdating{
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        searchContent(searchController.searchBar.text!)
+    }
+}
