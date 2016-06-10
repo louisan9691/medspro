@@ -51,7 +51,7 @@ class MeasurementsViewController: UIViewController {
     @IBOutlet weak var heightTextField: UITextField!
     @IBOutlet weak var weightTextField: UITextField!
     @IBOutlet weak var menuButton: UIBarButtonItem!
-    var segmentedBloodValue = String()
+    var segmentedBloodValue = "O-"
     var currentMeasurement = [CKRecord]()
     
     
@@ -157,16 +157,71 @@ class MeasurementsViewController: UIViewController {
                         self.currentMeasurement.append(measurement!)
                         
                         
-                        self.weightTextField.text! = String(measurement!.objectForKey("weight")!)
-                        self.heightTextField.text! = String(measurement!.objectForKey("height")!)
-                        self.glucoseTextField.text! = String(measurement!.objectForKey("glucoseLevel")!)
-                        self.segmentedBloodValue = String(measurement!.objectForKey("bloodType")!)
-                        self.bloodPressureTextField.text! = String(measurement!.objectForKey("pressure")!)
-                        self.cholesterolLevel.text! = String(measurement!.objectForKey("cholesterol")!)
-                        self.pulseTextField.text! = String(measurement!.objectForKey("pulse")!)
-                        self.insulinLevel.text! = String(measurement!.objectForKey("insulin")!)
-                        self.allergiesTextField.text! = String(measurement!.objectForKey("allergy")!)
+                        //Check if CKREcordValue is nil
+                        // If it is, set textFiled = " "
+                        // If it is not, set textField to the correct value
 
+                        self.segmentedBloodValue = String(measurement!.objectForKey("bloodType")!)
+                        
+
+                        if String(measurement!.objectForKey("weight")) == "nil"{
+                            self.weightTextField.text! = ""
+                        }else{
+                            
+                            self.weightTextField.text! = String(measurement!.objectForKey("weight")!)
+                        }
+                        
+                        if String(measurement!.objectForKey("height")) == "nil"{
+                            self.heightTextField.text! = ""
+                        }else{
+                            
+                            self.heightTextField.text! = String(measurement!.objectForKey("height")!)
+                        }
+                        
+                        if String(measurement!.objectForKey("glucoseLevel")) == "nil"{
+                            self.glucoseTextField.text! = ""
+                        }else{
+                            
+                            self.glucoseTextField.text! = String(measurement!.objectForKey("glucoseLevel")!)
+                        }
+                        
+                        if String(measurement!.objectForKey("pressure")) == "nil"{
+                            self.bloodPressureTextField.text! = ""
+                        }else{
+                            
+                            self.bloodPressureTextField.text! = String(measurement!.objectForKey("pressure")!)
+                        }
+                        
+                        if String(measurement!.objectForKey("cholesterol")) == "nil"{
+                            self.cholesterolLevel.text! = ""
+                        }else{
+                            
+                            self.cholesterolLevel.text! = String(measurement!.objectForKey("cholesterol")!)
+                        }
+                        
+                        if String(measurement!.objectForKey("pulse")) == "nil"{
+                            self.pulseTextField.text! = ""
+                        }else{
+                            
+                            self.pulseTextField.text! = String(measurement!.objectForKey("pulse")!)
+                        }
+                        
+                        if String(measurement!.objectForKey("insulin")) == "nil"{
+                            self.insulinLevel.text! = ""
+                        }else{
+                            
+                            self.insulinLevel.text! = String(measurement!.objectForKey("insulin")!)
+                        }
+                        
+                        if String(measurement!.objectForKey("allergy")) == "nil"{
+                            self.allergiesTextField.text! = ""
+                        }else{
+                            
+                            self.allergiesTextField.text! = String(measurement!.objectForKey("allergy")!)
+                        }
+                        
+                        
+                        
                         
                         switch self.segmentedBloodValue{
                         case "O-" :

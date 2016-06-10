@@ -16,7 +16,6 @@ class AddMedicineController: UIViewController, addDayDelegate, UINavigationContr
     var currentReminder: NSMutableArray
     var photoList: NSMutableArray?
     var segmentedControlValue = "Before Meal"
-    var photoURL: NSURL!
     var reminder = [String:NSDate]()
     
     let publicDB = CKContainer.defaultContainer().publicCloudDatabase
@@ -165,6 +164,7 @@ class AddMedicineController: UIViewController, addDayDelegate, UINavigationContr
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 if(self.photoList!.count > 0){
                     let newPhoto = CKRecord(recordType: "Medicine")
+                    
                     let image = self.photoList![0] as! UIImage
                     let fileManager = NSFileManager.defaultManager()
                     let dir = fileManager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
@@ -172,7 +172,6 @@ class AddMedicineController: UIViewController, addDayDelegate, UINavigationContr
                     UIImagePNGRepresentation(image)?.writeToFile(file!, atomically: true)
                     let imageURL = NSURL.fileURLWithPath(file!)
                     let imageAsset = CKAsset(fileURL: imageURL)
-                    print (imageAsset)
                     newPhoto["medImage"] = imageAsset
                     
                     
