@@ -17,7 +17,6 @@ class AddMedicineController: UIViewController, addDayDelegate, UINavigationContr
     var photoList: NSMutableArray?
     var segmentedControlValue = "Before Meal"
     var reminder = [String:NSDate]()
-    
     let publicDB = CKContainer.defaultContainer().publicCloudDatabase
    
     
@@ -37,8 +36,12 @@ class AddMedicineController: UIViewController, addDayDelegate, UINavigationContr
     @IBOutlet weak var medPrescriptionDateLabel: UITextField!
     @IBOutlet weak var medNumberOfPillsLabel: UITextField!
  
+    
+    
+    
     //SegmentedControl outlet for Before or After Meal
     @IBOutlet weak var segmentedControlOutlet: UISegmentedControl!
+    
     
     //SegmentedControl action for Before or After Meal
     @IBAction func segmentedControlAction(sender: UISegmentedControl) {
@@ -53,6 +56,17 @@ class AddMedicineController: UIViewController, addDayDelegate, UINavigationContr
             break
         }
     }
+    
+    
+    
+    //Clear photo Button
+    @IBAction func clearButton(sender: AnyObject) {
+        collectionView.hidden = true
+        photoList!.removeAllObjects()
+        collectionView.reloadData()
+    }
+    
+    
     
     
     //Add photo button
@@ -74,8 +88,8 @@ class AddMedicineController: UIViewController, addDayDelegate, UINavigationContr
         if img != nil{
             photoList!.addObject(img!)
             collectionView?.reloadData()
+            collectionView.hidden = false
         }
-        
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -100,8 +114,6 @@ class AddMedicineController: UIViewController, addDayDelegate, UINavigationContr
     
     //Save data button
     @IBAction func saveButton(sender: AnyObject) {
-        
-        
         if (medNameLabel.text!.isEmpty) || (medDosageLabel.text!.isEmpty){
             let alertController =  UIAlertController(title: "Missing Field", message: "Please enter you medicine details", preferredStyle: UIAlertControllerStyle.Alert)
             
@@ -109,54 +121,61 @@ class AddMedicineController: UIViewController, addDayDelegate, UINavigationContr
             self.presentViewController(alertController, animated: true, completion: nil)
         }
         else{
-        let newMedicine = CKRecord(recordType: "Medicine")
-            newMedicine["medName"] = medNameLabel.text!
-            newMedicine["medStrength"] = medStrengthLabel.text!
-            newMedicine["medDosage"] = Int(medDosageLabel.text!)
-            newMedicine["medWhen"] = segmentedControlValue
-            newMedicine["medNote"] = medNoteLabel.text!
-            newMedicine["medPrescription"] = medPrescriptionDateLabel.text!
-            newMedicine["medNumberOfPills"] = Int(medNumberOfPillsLabel.text!)
-            publicDB.saveRecord(newMedicine, completionHandler: {(record:CKRecord?, error:NSError?) -> Void in
-                if error == nil{
-                     print("Medicine is inserted into the database")
-                }else{
-                    print("Error saving data on the icloud" + error.debugDescription)
-                    let alertController =  UIAlertController(title: "Login required", message: "Please login using your Apple ID", preferredStyle: UIAlertControllerStyle.Alert)
-                    
-                    alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-                    self.presentViewController(alertController, animated: true, completion: nil)
-                   
-                }
-            })
-           
             
-            for(key,value) in reminder{
-                let newReminder = CKRecord(recordType: "Reminder")
+            for (key,value) in reminder {
                 
-                //Establish relationship 1-M with medicine
-                let medReference = CKReference(record: newMedicine, action: CKReferenceAction.DeleteSelf)
-                newReminder["med"] = medReference
-                //Insert records into Reminder
-                newReminder["Day"] = key
-                newReminder["Time"] = value
-                print(key)
-                print(value)
                 
-                publicDB.saveRecord(newReminder, completionHandler: {(record:CKRecord?, error:NSError?) -> Void in
+                let newMedicine = CKRecord(recordType: "Medicine")
+                newMedicine["medName"] = medNameLabel.text!
+                newMedicine["medStrength"] = medStrengthLabel.text!
+                newMedicine["medDosage"] = Int(medDosageLabel.text!)
+                newMedicine["medWhen"] = segmentedControlValue
+                newMedicine["medNote"] = medNoteLabel.text!
+                newMedicine["medPrescription"] = medPrescriptionDateLabel.text!
+                newMedicine["medNumberOfPills"] = Int(medNumberOfPillsLabel.text!)
+                newMedicine["Day"] = key
+                newMedicine["Time"] = value
+                publicDB.saveRecord(newMedicine, completionHandler: {(record:CKRecord?, error:NSError?) -> Void in
                     if error == nil{
-                        print("Reminder is inserted into the database")
+                        print("Medicine is inserted into the database")
                     }else{
                         print("Error saving data on the icloud" + error.debugDescription)
                         let alertController =  UIAlertController(title: "Login required", message: "Please login using your Apple ID", preferredStyle: UIAlertControllerStyle.Alert)
                         
                         alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
                         self.presentViewController(alertController, animated: true, completion: nil)
-                       
                     }
                 })
-
             }
+      
+           
+            
+//            for(key,value) in reminder{
+//                let newReminder = CKRecord(recordType: "Reminder")
+//                
+//                //Establish relationship 1-M with medicine
+//                let medReference = CKReference(record: newMedicine, action: CKReferenceAction.DeleteSelf)
+//                newReminder["med"] = medReference
+//                //Insert records into Reminder
+//                newReminder["Day"] = key
+//                newReminder["Time"] = value
+//                print(key)
+//                print(value)
+//                
+//                publicDB.saveRecord(newReminder, completionHandler: {(record:CKRecord?, error:NSError?) -> Void in
+//                    if error == nil{
+//                        print("Reminder is inserted into the database")
+//                    }else{
+//                        print("Error saving data on the icloud" + error.debugDescription)
+//                        let alertController =  UIAlertController(title: "Login required", message: "Please login using your Apple ID", preferredStyle: UIAlertControllerStyle.Alert)
+//                        
+//                        alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+//                        self.presentViewController(alertController, animated: true, completion: nil)
+//                       
+//                    }
+//                })
+//
+//            }
             
             
             

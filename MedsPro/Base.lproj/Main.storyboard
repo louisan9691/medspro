@@ -257,13 +257,27 @@
                                                                 <constraint firstAttribute="width" constant="238" id="Jzo-DL-c0j"/>
                                                             </constraints>
                                                         </imageView>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="szo-fx-FmE">
+                                                            <rect key="frame" x="211" y="3" width="24" height="24"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="24" id="CbR-iR-Vm6"/>
+                                                            </constraints>
+                                                            <state key="normal" image="Remove">
+                                                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="clearButton:" destination="4gX-1J-zAP" eventType="touchUpInside" id="ecu-cX-tI6"/>
+                                                            </connections>
+                                                        </button>
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </view>
                                                 <constraints>
+                                                    <constraint firstItem="szo-fx-FmE" firstAttribute="top" secondItem="193-rM-MbV" secondAttribute="top" constant="3" id="3dD-wN-EcL"/>
                                                     <constraint firstItem="193-rM-MbV" firstAttribute="centerX" secondItem="4j9-nk-rIP" secondAttribute="centerX" id="5v9-jP-UzD"/>
                                                     <constraint firstItem="193-rM-MbV" firstAttribute="top" secondItem="4j9-nk-rIP" secondAttribute="top" id="gWx-bh-V8D"/>
                                                     <constraint firstAttribute="bottom" secondItem="193-rM-MbV" secondAttribute="bottom" id="lDb-ov-KSw"/>
+                                                    <constraint firstItem="szo-fx-FmE" firstAttribute="trailing" secondItem="193-rM-MbV" secondAttribute="trailing" constant="-3" id="zwa-Gs-JJs"/>
                                                 </constraints>
                                                 <connections>
                                                     <outlet property="photoView" destination="193-rM-MbV" id="OoJ-Eo-GaS"/>
@@ -1987,15 +2001,24 @@
                                     <action selector="addPhoto:" destination="AHx-8T-9V4" eventType="touchUpInside" id="2Q9-D8-2jM"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DjK-GE-0ho">
+                                <rect key="frame" x="358" y="148" width="81" height="30"/>
+                                <state key="normal" title="Clear Photo"/>
+                                <connections>
+                                    <action selector="clearButton:" destination="AHx-8T-9V4" eventType="touchUpInside" id="bRh-3n-SL3"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="DjK-GE-0ho" firstAttribute="bottom" secondItem="4Yf-jB-4SK" secondAttribute="bottom" id="0Z3-Bl-nfA"/>
                             <constraint firstItem="mda-cZ-NAj" firstAttribute="top" secondItem="0o8-Wk-6od" secondAttribute="bottom" constant="8" symbolic="YES" id="7ZI-6S-plu"/>
                             <constraint firstItem="0o8-Wk-6od" firstAttribute="trailing" secondItem="998-Lg-DMF" secondAttribute="trailingMargin" id="FQB-wT-QDg"/>
                             <constraint firstItem="PYL-3d-VMv" firstAttribute="leading" secondItem="4Yf-jB-4SK" secondAttribute="trailing" constant="8" symbolic="YES" id="H0I-xt-UHm"/>
                             <constraint firstItem="4Yf-jB-4SK" firstAttribute="top" secondItem="KeX-qZ-Oyt" secondAttribute="bottom" constant="16" id="IBa-vp-OW2"/>
                             <constraint firstItem="4Yf-jB-4SK" firstAttribute="centerX" secondItem="0o8-Wk-6od" secondAttribute="centerX" id="LLH-AD-spT"/>
                             <constraint firstItem="5NR-yW-gUa" firstAttribute="leading" secondItem="hrT-Tf-FzD" secondAttribute="leading" id="NoB-mN-CgX"/>
+                            <constraint firstItem="DjK-GE-0ho" firstAttribute="leading" secondItem="PYL-3d-VMv" secondAttribute="leading" id="RG1-M8-tt6"/>
                             <constraint firstItem="0o8-Wk-6od" firstAttribute="trailing" secondItem="mda-cZ-NAj" secondAttribute="trailing" id="UK2-xc-gzc"/>
                             <constraint firstItem="mda-cZ-NAj" firstAttribute="leading" secondItem="5NR-yW-gUa" secondAttribute="leading" id="WCw-Oi-UGZ"/>
                             <constraint firstItem="2FK-GR-L0n" firstAttribute="top" secondItem="qlH-Wk-TYu" secondAttribute="bottom" constant="8" symbolic="YES" id="WVb-zU-1bq"/>
@@ -2071,6 +2094,7 @@
         <image name="Measurement" width="24" height="24"/>
         <image name="Menu" width="24" height="24"/>
         <image name="Pill" width="24" height="24"/>
+        <image name="Remove" width="24" height="24"/>
         <image name="Schedule" width="24" height="24"/>
         <image name="Setting" width="32" height="32"/>
         <image name="User" width="24" height="24"/>

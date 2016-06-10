@@ -42,9 +42,14 @@ class UserViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             break
     }
 }
-    
-    
-    
+   
+    //Clear photo
+    @IBAction func clearButton(sender: AnyObject) {
+        userImage.image = nil
+        photoList.removeAllObjects()
+        
+    }
+       
     // Add photo button
     @IBAction func addPhoto(sender: AnyObject) {
         let imagePicker: UIImagePickerController = UIImagePickerController()
@@ -84,6 +89,7 @@ class UserViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             
                 //Change UIimage to CK asset
                 //Save imageAsset to CLoudkit
+            if self.photoList.count == 1 {
                 let image = self.photoList[0] as! UIImage
                 let fileManager = NSFileManager.defaultManager()
                 let dir = fileManager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
@@ -92,7 +98,7 @@ class UserViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                 let imageURL = NSURL.fileURLWithPath(file!)
                 let imageAsset = CKAsset(fileURL: imageURL)
                 newUser["userImage"] = imageAsset
-         
+            }
             
          
         
@@ -126,15 +132,19 @@ class UserViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             currentUser[0].setObject(Int(self.userPhoneText.text!), forKey: "userPhone")
             
             // Change UIimage to CKAsset
-            let image = self.photoList[0] as! UIImage
-            let fileManager = NSFileManager.defaultManager()
-            let dir = fileManager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
-            let file = dir[0].URLByAppendingPathComponent("image").path
-            UIImagePNGRepresentation(image)?.writeToFile(file!, atomically: true)
-            let imageURL = NSURL.fileURLWithPath(file!)
-            let imageAsset = CKAsset(fileURL: imageURL)
+            if self.photoList.count == 1{
+                let image = self.photoList[0] as! UIImage
+                let fileManager = NSFileManager.defaultManager()
+                let dir = fileManager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
+                let file = dir[0].URLByAppendingPathComponent("image").path
+                UIImagePNGRepresentation(image)?.writeToFile(file!, atomically: true)
+                let imageURL = NSURL.fileURLWithPath(file!)
+                let imageAsset = CKAsset(fileURL: imageURL)
+                currentUser[0].setObject(imageAsset, forKey: "userImage")
+            }else{
+                currentUser[0].setObject(nil, forKey: "userImage")
+            }
             
-            currentUser[0].setObject(imageAsset, forKey: "userImage")
             
             
             publicDB.saveRecord(currentUser[0], completionHandler: { (savedRecord, saveError) in
@@ -186,6 +196,7 @@ class UserViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                     
                     dispatch_async(dispatch_get_main_queue()) {
                         self.currentUser.append(user!)
+                        
                         self.segmentedGenderValue = String(user!.objectForKey("userGender")!)
                         
                         //Check if CKREcordValue is nil
@@ -227,15 +238,17 @@ class UserViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                         }
                         
                         //Run this on main thread. It is supposed to help dowloading the picture quicker
-                        dispatch_async(dispatch_get_main_queue()) {                 
-                            let photo =
-                                user!.objectForKey("userImage") as! CKAsset
+                        if String(user!.objectForKey("userImage")) != "nil" {
                             
-                            let image = UIImage(contentsOfFile:
-                                photo.fileURL.path!)
-                            
-                            self.userImage.image = image
-                            
+                            dispatch_async(dispatch_get_main_queue()) {
+                                let photo =
+                                    user!.objectForKey("userImage") as! CKAsset
+                                
+                                let image = UIImage(contentsOfFile:
+                                    photo.fileURL.path!)
+                                
+                                self.userImage.image = image
+                            }
                         }
                         
                         switch self.segmentedGenderValue{
