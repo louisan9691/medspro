@@ -10,6 +10,7 @@ import UIKit
 
 class ScheduleCell: UITableViewCell {
 
+    @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var medNameLabel: UILabel!
     @IBOutlet weak var medNoOfPillsLabel: UILabel!
     override func awakeFromNib() {

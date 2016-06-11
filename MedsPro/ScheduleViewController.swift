@@ -12,6 +12,7 @@ import CloudKit
 
 class ScheduleViewController: UIViewController {
 
+    let publicDB = CKContainer.defaultContainer().publicCloudDatabase
     @IBOutlet weak var menuButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var segmentedControlOutlet: UISegmentedControl!
@@ -32,11 +33,74 @@ class ScheduleViewController: UIViewController {
     
     
     
+    // Done button after user drank their medicine
+    // No of pill decreasees by medicine Dosage
+    func doneButton (sender: UIButton){
+        
+            // get indexPath of a button
+            let index = sender.tag
+            let medDetail: CKRecord
+            if segmentedControlOutlet.selectedSegmentIndex == 0 {
+                medDetail = Monday[index]
+            }
+            else if segmentedControlOutlet.selectedSegmentIndex == 1{
+                medDetail = Tuesday[index]
+            }
+            else if segmentedControlOutlet.selectedSegmentIndex == 2{
+                medDetail = Wednesday[index]
+            }
+            else if segmentedControlOutlet.selectedSegmentIndex == 3{
+                medDetail = Thursday[index]
+            }
+            else if segmentedControlOutlet.selectedSegmentIndex == 4{
+                medDetail = Friday[index]
+            }
+            else if segmentedControlOutlet.selectedSegmentIndex == 5 {
+                medDetail = Saturday[index]
+            }else{
+                medDetail = Sunday[index]
+            }
+        //Retrieve dosage value
+        let dosage = medDetail.objectForKey("medDosage") as! Int
+        var pills: Int = 0
+        var total: Int
+        
+        //Check if number of pills is valid
+        // If not, let total pill left is 0
+        // If it is valid, (no of pills) - (dosage)
+        if medDetail.objectForKey("medNumberOfPills") == nil {
+            total = 0
+        }else{
+            pills = medDetail.objectForKey("medNumberOfPills") as! Int
+            total = pills - dosage
+        }
+            print (total)
+        
+            //Update number of pills
+            medDetail.setObject(total, forKey: "medNumberOfPills")
+            publicDB.saveRecord(medDetail, completionHandler: { (savedRecord, saveError) in
+            if saveError != nil {
+                print("Error saving record: \(saveError!.localizedDescription)")
+            } else {
+                print("Successfully updated record!")
+                dispatch_async(dispatch_get_main_queue()) {
+                    let alertController =  UIAlertController(title: "Great Job!", message: "You have finished your pills for today", preferredStyle: UIAlertControllerStyle.Alert)
+                    
+                    alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+                    self.presentViewController(alertController, animated: true, completion: nil)
+                }
+            }
+        }
+    )
+}
     
-   
     
-    
-    
+
+
+
+
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -46,7 +110,6 @@ class ScheduleViewController: UIViewController {
             menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
-       
         //Preselect segmentedControl based on current day
         let components = calendar.components([.Weekday], fromDate: date)
         let day = components.weekday
@@ -71,10 +134,6 @@ class ScheduleViewController: UIViewController {
         if day == 1 {
             self.segmentedControlOutlet.selectedSegmentIndex = 6
         }
-        
-       
-      
-        
 
         loadData()
         tableView.reloadData()
@@ -104,6 +163,7 @@ class ScheduleViewController: UIViewController {
         }
     }
     
+    
     @IBAction func segmentedControlAction(sender: UISegmentedControl) {
         self.tableView.reloadData()
     }
@@ -115,9 +175,7 @@ class ScheduleViewController: UIViewController {
     
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         var returnValue = 0
-        
         switch segmentedControlOutlet.selectedSegmentIndex {
         case 0:
             returnValue = Monday.count
@@ -147,52 +205,66 @@ class ScheduleViewController: UIViewController {
         return returnValue
     }
     
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cellIdentifier = "ScheduleCell"
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:  indexPath) as! ScheduleCell
-        
-        
+      
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "dd MMMM, yyyy, hh:mm a"
 
-        
-        
         switch segmentedControlOutlet.selectedSegmentIndex {
         case 0:
             let record: CKRecord = Monday[indexPath.row]
             cell.medNameLabel.text! = String(record.valueForKey("medName")!)
             cell.medNoOfPillsLabel.text! = String(dateFormatter.stringFromDate(record.valueForKey("Time") as! NSDate))
+            
+            //get indexPath for a button
+            cell.doneButton.tag = indexPath.row
+            cell.doneButton.addTarget(self, action: #selector(doneButton), forControlEvents: UIControlEvents.TouchUpInside)
             break
         case 1:
             let record: CKRecord = Tuesday[indexPath.row]
             cell.medNameLabel.text! = String(record.valueForKey("medName")!)
             cell.medNoOfPillsLabel.text! = String(dateFormatter.stringFromDate(record.valueForKey("Time") as! NSDate))
+            cell.doneButton.tag = indexPath.row
+            cell.doneButton.addTarget(self, action: #selector(doneButton), forControlEvents: UIControlEvents.TouchUpInside)
             break
         case 2:
             let record: CKRecord = Wednesday[indexPath.row]
             cell.medNameLabel.text! = String(record.valueForKey("medName")!)
             cell.medNoOfPillsLabel.text! = String(dateFormatter.stringFromDate(record.valueForKey("Time") as! NSDate))
+            cell.doneButton.tag = indexPath.row
+            cell.doneButton.addTarget(self, action: #selector(doneButton), forControlEvents: UIControlEvents.TouchUpInside)
             break
         case 3:
             let record: CKRecord = Thursday[indexPath.row]
             cell.medNameLabel.text! = String(record.valueForKey("medName")!)
             cell.medNoOfPillsLabel.text! = String(dateFormatter.stringFromDate(record.valueForKey("Time") as! NSDate))
+            cell.doneButton.tag = indexPath.row
+            cell.doneButton.addTarget(self, action: #selector(doneButton), forControlEvents: UIControlEvents.TouchUpInside)
             break
         case 4:
             let record: CKRecord = Friday[indexPath.row]
             cell.medNameLabel.text! = String(record.valueForKey("medName")!)
             cell.medNoOfPillsLabel.text! = String(dateFormatter.stringFromDate(record.valueForKey("Time") as! NSDate))
+            cell.doneButton.tag = indexPath.row
+            cell.doneButton.addTarget(self, action: #selector(doneButton), forControlEvents: UIControlEvents.TouchUpInside)
             break
         case 5:
             let record: CKRecord = Saturday[indexPath.row]
             cell.medNameLabel.text! = String(record.valueForKey("medName")!)
             cell.medNoOfPillsLabel.text! = String(dateFormatter.stringFromDate(record.valueForKey("Time") as! NSDate))
+            cell.doneButton.tag = indexPath.row
+            cell.doneButton.addTarget(self, action: #selector(doneButton), forControlEvents: UIControlEvents.TouchUpInside)
             break
         case 6:
             let record: CKRecord = Sunday[indexPath.row]
             cell.medNameLabel.text! = String(record.valueForKey("medName")!)
             cell.medNoOfPillsLabel.text! = String(dateFormatter.stringFromDate(record.valueForKey("Time") as! NSDate))
+            cell.doneButton.tag = indexPath.row
+            cell.doneButton.addTarget(self, action: #selector(doneButton), forControlEvents: UIControlEvents.TouchUpInside)
             break
         default:
             break
@@ -236,10 +308,9 @@ class ScheduleViewController: UIViewController {
                 deleteData([self.Sunday[indexPath.row].recordID])
                 self.Sunday.removeAtIndex(indexPath.row)
             }
-            
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)            
+        }
     }
-}
 
     //Delete data func
     //Input array of recordID
@@ -253,7 +324,6 @@ class ScheduleViewController: UIViewController {
             } else {
                 print("Deleted Successfully")
             }
-            
         }
         publicDB.addOperation(operation)
     }
@@ -262,11 +332,48 @@ class ScheduleViewController: UIViewController {
     
     
     
+    //Segue to ViewMedicineController
+    //Pass CKRecord of chosen Medicine
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "viewMedicineSegue"
+        {
+            if let indexPath = self.tableView.indexPathForSelectedRow{
+                let medDetail: CKRecord
+                
+                if segmentedControlOutlet.selectedSegmentIndex == 0 {
+                    medDetail = Monday[indexPath.row]
+                }
+                else if segmentedControlOutlet.selectedSegmentIndex == 1{
+                    medDetail = Tuesday[indexPath.row]
+                }
+                else if segmentedControlOutlet.selectedSegmentIndex == 2{
+                    medDetail = Wednesday[indexPath.row]
+                }
+                else if segmentedControlOutlet.selectedSegmentIndex == 3{
+                    medDetail = Thursday[indexPath.row]
+                }
+                else if segmentedControlOutlet.selectedSegmentIndex == 4{
+                    medDetail = Friday[indexPath.row]
+                }
+                else if segmentedControlOutlet.selectedSegmentIndex == 5 {
+                    medDetail = Saturday[indexPath.row]
+                }else{
+                    medDetail = Sunday[indexPath.row]
+                }
+                let controller: ViewMedicineController = segue.destinationViewController as! ViewMedicineController
+                controller.medDetail.append(medDetail)
+
+            }
+        }
+    }
+    
+    
+    
     
     
     func loadData(){
 
-       let publicDB = CKContainer.defaultContainer().publicCloudDatabase
+      
        let predicate = NSPredicate(value: true)
        let query = CKQuery(recordType: "Medicine", predicate: predicate)
         query.sortDescriptors = [NSSortDescriptor(key: "Time", ascending: true)]
@@ -297,7 +404,6 @@ class ScheduleViewController: UIViewController {
                         self.Sunday.append(medicine)
                     }
                 }
-                
                     NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
                         self.tableView.reloadData()
                     })

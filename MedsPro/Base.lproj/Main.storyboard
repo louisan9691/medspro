@@ -46,6 +46,13 @@
                                             <rect key="frame" x="0.0" y="0.0" width="560" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7ga-tK-fao">
+                                                    <rect key="frame" x="253" y="6" width="43" height="32"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <state key="normal" title="Done">
+                                                        <color key="titleColor" red="0.17297980149318903" green="0.49995287179065517" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                </button>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nyZ-F1-UTx">
                                                     <rect key="frame" x="15" y="5" width="32" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -63,8 +70,10 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="doneButton" destination="7ga-tK-fao" id="Ohc-as-fGK"/>
                                             <outlet property="medNameLabel" destination="nyZ-F1-UTx" id="97t-NC-Mfx"/>
                                             <outlet property="medNoOfPillsLabel" destination="dGC-eo-It9" id="xqn-xv-yv9"/>
+                                            <segue destination="VpO-aK-sgM" kind="show" identifier="viewMedicineSegue" id="yIL-xe-Ear"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1849,13 +1858,6 @@
                                             <action selector="addPhoto:" destination="VpO-aK-sgM" eventType="touchUpInside" id="Zqz-mo-6go"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EDp-XZ-hZJ">
-                                        <rect key="frame" x="576" y="585" width="24" height="24"/>
-                                        <state key="normal" image="Remove"/>
-                                        <connections>
-                                            <action selector="clearButton:" destination="VpO-aK-sgM" eventType="touchUpInside" id="sUT-RQ-AF6"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vJh-l2-3N1">
                                         <rect key="frame" x="549" y="8" width="24" height="24"/>
                                         <constraints>
@@ -1865,6 +1867,20 @@
                                         <state key="normal" image="share-file-2"/>
                                         <connections>
                                             <action selector="shareButton:" destination="VpO-aK-sgM" eventType="touchUpInside" id="qk8-aY-ezf"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="usn-aO-0Ic">
+                                        <rect key="frame" x="568" y="617" width="32" height="32"/>
+                                        <state key="normal" image="picture"/>
+                                        <connections>
+                                            <segue destination="sIy-YK-eAR" kind="show" identifier="viewPhotoSegue" id="bm2-fr-lnj"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EDp-XZ-hZJ">
+                                        <rect key="frame" x="576" y="585" width="24" height="24"/>
+                                        <state key="normal" image="Remove"/>
+                                        <connections>
+                                            <action selector="clearButton:" destination="VpO-aK-sgM" eventType="touchUpInside" id="sUT-RQ-AF6"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1883,6 +1899,7 @@
                                     <constraint firstItem="eFZ-Ab-V3B" firstAttribute="centerY" secondItem="vJh-l2-3N1" secondAttribute="centerY" id="9V4-yA-5i1"/>
                                     <constraint firstItem="zYC-L9-hh5" firstAttribute="top" secondItem="6pK-22-L9l" secondAttribute="bottom" constant="7" id="A76-31-WFx"/>
                                     <constraint firstItem="CJI-vU-SqX" firstAttribute="leading" secondItem="cSI-E1-sa2" secondAttribute="leading" id="AXZ-9r-hrl"/>
+                                    <constraint firstItem="usn-aO-0Ic" firstAttribute="top" secondItem="EDp-XZ-hZJ" secondAttribute="bottom" constant="8" symbolic="YES" id="BZE-Gs-kvk"/>
                                     <constraint firstItem="cSI-E1-sa2" firstAttribute="top" secondItem="Afw-ci-bA8" secondAttribute="bottom" constant="53" id="DXU-AI-ODr"/>
                                     <constraint firstItem="eFZ-Ab-V3B" firstAttribute="leading" secondItem="cbm-an-YRP" secondAttribute="leading" id="Dnq-tM-kPg"/>
                                     <constraint firstItem="XQg-l6-Uua" firstAttribute="trailing" secondItem="rSa-uy-70Y" secondAttribute="trailing" id="DvI-PH-fj1"/>
@@ -1895,6 +1912,7 @@
                                     <constraint firstItem="XQg-l6-Uua" firstAttribute="centerX" secondItem="uxf-1w-And" secondAttribute="centerX" id="Mpn-5o-vKV"/>
                                     <constraint firstItem="Afw-ci-bA8" firstAttribute="trailing" secondItem="cSI-E1-sa2" secondAttribute="trailing" id="Od9-v1-ugc"/>
                                     <constraint firstItem="XQg-l6-Uua" firstAttribute="top" secondItem="vJh-l2-3N1" secondAttribute="bottom" constant="45" id="PZm-Sk-jE7"/>
+                                    <constraint firstItem="usn-aO-0Ic" firstAttribute="trailing" secondItem="EDp-XZ-hZJ" secondAttribute="trailing" id="RQo-HL-veZ"/>
                                     <constraint firstItem="EDp-XZ-hZJ" firstAttribute="trailing" secondItem="wOv-mk-hHm" secondAttribute="trailing" id="S5o-5v-2ig"/>
                                     <constraint firstItem="XXE-XG-hCV" firstAttribute="top" secondItem="odk-eK-H55" secondAttribute="bottom" constant="8" symbolic="YES" id="Suw-KC-Rz0"/>
                                     <constraint firstAttribute="trailing" secondItem="EDp-XZ-hZJ" secondAttribute="trailing" id="U9P-kf-cLp"/>
@@ -2495,10 +2513,13 @@
         <image name="Setting" width="32" height="32"/>
         <image name="User" width="24" height="24"/>
         <image name="addUser" width="32" height="32"/>
+        <image name="picture" width="32" height="32"/>
         <image name="share-file-2" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="EXD-NR-6OS"/>
+        <segue reference="bm2-fr-lnj"/>
+        <segue reference="yIL-xe-Ear"/>
         <segue reference="Ouk-P7-SO7"/>
+        <segue reference="EXD-NR-6OS"/>
     </inferredMetricsTieBreakers>
 </document>

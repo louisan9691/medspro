@@ -143,7 +143,19 @@ class ViewMedicineController: UIViewController, UIImagePickerControllerDelegate,
         }
     
 
-  
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "viewPhotoSegue"{
+            let controller: PhotoViewController  = segue.destinationViewController as! PhotoViewController
+            print(self.photoList.objectAtIndex(0))
+            controller.photoToView = self.photoList.objectAtIndex(0) as? UIImage
+        }
+    }
+
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         roundedButton()
