@@ -11,7 +11,7 @@ import CloudKit
 
 class MedicineViewController: UIViewController {
 
-    @IBOutlet weak var searchBar: UITableView!
+
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var menuButton: UIBarButtonItem!
     var medicineList = [CKRecord]()
@@ -57,7 +57,6 @@ class MedicineViewController: UIViewController {
     //refresh function
     func refresh (){
     dispatch_async(dispatch_get_main_queue()) {
-        
         //Clear medicineList otherwise medicineList.count will be doubled. Pull refresh will duplicate data
         self.medicineList.removeAll()
         self.loadData()
@@ -81,8 +80,8 @@ class MedicineViewController: UIViewController {
         return self.medicineList.count
     }
     
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
         let cellIdentifier = "MedicineCell"
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:  indexPath) as! MedicineCell
         let record: CKRecord
@@ -97,8 +96,6 @@ class MedicineViewController: UIViewController {
         cell.medNameLabel.text! = record.valueForKey("medName") as! String
         cell.medStrengthLabel.text! = record.valueForKey("medStrength") as! String
         cell.medPillLabel.text!  = String(record.valueForKey("medDosage")!)
-        
-        
         return cell
     }
     

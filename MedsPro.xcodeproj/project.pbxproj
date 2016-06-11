@@ -17,6 +17,8 @@
 		FC3BB2681CD4E8C60073875F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC3BB2661CD4E8C60073875F /* LaunchScreen.storyboard */; };
 		FC3BB2731CD4E8C60073875F /* MedsProTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3BB2721CD4E8C60073875F /* MedsProTests.swift */; };
 		FC3BB27E1CD4E8C60073875F /* MedsProUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3BB27D1CD4E8C60073875F /* MedsProUITests.swift */; };
+		FC6C2CEE1D0C1370003B6086 /* AcknowledgmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6C2CED1D0C1370003B6086 /* AcknowledgmentViewController.swift */; };
+		FC6C2CF01D0C2A59003B6086 /* EmergencyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6C2CEF1D0C2A59003B6086 /* EmergencyController.swift */; };
 		FC769E851D081113006A96CF /* MedicineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC769E841D081113006A96CF /* MedicineCell.swift */; };
 		FC769E871D0AD69E006A96CF /* ViewMedicineController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC769E861D0AD69E006A96CF /* ViewMedicineController.swift */; };
 		FC82E7C31CF3D81E004BA6A0 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC82E7C21CF3D81E004BA6A0 /* CloudKit.framework */; };
@@ -75,6 +77,8 @@
 		FC3BB2791CD4E8C60073875F /* MedsProUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MedsProUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC3BB27D1CD4E8C60073875F /* MedsProUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedsProUITests.swift; sourceTree = "<group>"; };
 		FC3BB27F1CD4E8C60073875F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FC6C2CED1D0C1370003B6086 /* AcknowledgmentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcknowledgmentViewController.swift; sourceTree = "<group>"; };
+		FC6C2CEF1D0C2A59003B6086 /* EmergencyController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmergencyController.swift; sourceTree = "<group>"; };
 		FC769E841D081113006A96CF /* MedicineCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedicineCell.swift; sourceTree = "<group>"; };
 		FC769E861D0AD69E006A96CF /* ViewMedicineController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewMedicineController.swift; sourceTree = "<group>"; };
 		FC82E7BF1CF3CFF4004BA6A0 /* MedsPro.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = MedsPro.entitlements; sourceTree = "<group>"; };
@@ -210,6 +214,8 @@
 		FC8D7C961CF37C6B00FB5E53 /* SideMenu */ = {
 			isa = PBXGroup;
 			children = (
+				FC6C2CEF1D0C2A59003B6086 /* EmergencyController.swift */,
+				FC6C2CED1D0C1370003B6086 /* AcknowledgmentViewController.swift */,
 				FC8D7C971CF37C7E00FB5E53 /* AddAccountViewController.swift */,
 				FC8D7C991CF380CF00FB5E53 /* ChangeAccountViewController.swift */,
 				FC8D7C9B1CF3828E00FB5E53 /* ChangePasswordViewController.swift */,
@@ -376,6 +382,7 @@
 				FC8D7C9A1CF380CF00FB5E53 /* ChangeAccountViewController.swift in Sources */,
 				FC82E7CB1CF6030F004BA6A0 /* ScheduleCell.swift in Sources */,
 				FC8D7C791CF2093100FB5E53 /* PhotoViewController.swift in Sources */,
+				FC6C2CEE1D0C1370003B6086 /* AcknowledgmentViewController.swift in Sources */,
 				FC8D7C9E1CF3845900FB5E53 /* DoctorTableViewController.swift in Sources */,
 				FC8D7CAA1CF38C1700FB5E53 /* SettingTableViewController.swift in Sources */,
 				FC8D7C931CF3670200FB5E53 /* SWRevealViewController.m in Sources */,
@@ -389,6 +396,7 @@
 				FC8D7CA61CF3880E00FB5E53 /* EmergencyCallViewController.swift in Sources */,
 				FC769E871D0AD69E006A96CF /* ViewMedicineController.swift in Sources */,
 				FC8D7C9C1CF3828E00FB5E53 /* ChangePasswordViewController.swift in Sources */,
+				FC6C2CF01D0C2A59003B6086 /* EmergencyController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

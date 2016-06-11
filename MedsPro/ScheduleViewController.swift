@@ -8,6 +8,7 @@
 
 import UIKit
 import CloudKit
+import LocalAuthentication
 
 
 class ScheduleViewController: UIViewController {
@@ -412,7 +413,60 @@ class ScheduleViewController: UIViewController {
                 }
             }
         }
+    
+    //Login button
+    @IBAction func loginButton(sender: AnyObject) {
+        touchID()
     }
+    
+    //Setup touchID
+    func touchID()
+    {
+        let authContext = LAContext()
+        let authReason = "Please use Touch ID to access User tab"
+        var authError: NSError?
+        
+        if authContext.canEvaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, error: &authError){
+            
+            authContext.evaluatePolicy(LAPolicy.DeviceOwnerAuthenticationWithBiometrics, localizedReason: authReason, reply: {(success,error) -> Void in
+                if success{
+                print(" Authenticate successfully")
+                    dispatch_async(dispatch_get_main_queue(), {() -> Void in
+                    self.tabBarController?.selectedIndex = 3
+                    })
+                }else{
+                    if let error = error {
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            self.reportTouchIDError(error)
+                        })
+                    }
+                }
+            })
+            }else{
+            print(authError?.localizedDescription)
+        }
+    }
+    
+    //Touch ID error in a more friendly way
+    func reportTouchIDError(error: NSError){
+        switch error.code{
+        case LAError.AuthenticationFailed.rawValue:
+            print("Authentication Failed")
+        case LAError.PasscodeNotSet.rawValue:
+            print("Passcode has not been set")
+        case LAError.SystemCancel.rawValue:
+            print("User canceled")
+        case LAError.TouchIDNotEnrolled.rawValue:
+            print("User has not register their fingers with touch ID")
+        case LAError.TouchIDNotAvailable.rawValue:
+            print("Touch ID is not available")
+        case LAError.UserFallback.rawValue:
+            print("User opted to enter password")
+        default:
+            print(error.localizedDescription)
+        }
+    }
+}
 
 
 //                    for i in 0 ..< medicines!.count{

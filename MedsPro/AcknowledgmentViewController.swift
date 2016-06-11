@@ -1,26 +1,23 @@
 //
-//  SettingTableViewController.swift
+//  AcknowledgmentViewController.swift
 //  MedsPro
 //
-//  Created by Louis An on 24/05/2016.
+//  Created by Louis An on 11/06/2016.
 //  Copyright © 2016 Louis An. All rights reserved.
 //
 
 import UIKit
 
-class SettingTableViewController: UITableViewController {
+class AcknowledgmentViewController: UITableViewController {
 
-    @IBOutlet weak var menuButton: UIBarButtonItem!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        //Click menu button to slide out side menu
-        if self.revealViewController() != nil{
-            menuButton.target = self.revealViewController()
-            menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
-            self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
-        }
+
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+
+        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,8 +34,6 @@ class SettingTableViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 9
+        return 3
     }
-
-   
 }
