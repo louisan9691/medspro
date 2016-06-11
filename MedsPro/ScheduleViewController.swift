@@ -154,7 +154,7 @@ class ScheduleViewController: UIViewController {
         
         
         let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "MMMM dd, yyyy, hh:mm a"
+        dateFormatter.dateFormat = "dd MMMM, yyyy, hh:mm a"
 
         
         
@@ -257,6 +257,10 @@ class ScheduleViewController: UIViewController {
         }
         publicDB.addOperation(operation)
     }
+    
+    
+    
+    
     
     
     

@@ -37,9 +37,10 @@ class MedicineViewController: UIViewController {
             menuButton.action = #selector(SWRevealViewController.revealToggle(_:))
             self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         }
-        loadData()
-        tableView.reloadData()
-
+        dispatch_async(dispatch_get_main_queue()) {
+        self.loadData()
+        self.tableView.reloadData()
+        }
         //Pull to refresh
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControl.addTarget(self, action: #selector(ScheduleViewController.refresh), forControlEvents: UIControlEvents.ValueChanged)
@@ -93,7 +94,6 @@ class MedicineViewController: UIViewController {
         }else{
             record = medicineList[indexPath.row]
         }
-        
         cell.medNameLabel.text! = record.valueForKey("medName") as! String
         cell.medStrengthLabel.text! = record.valueForKey("medStrength") as! String
         cell.medPillLabel.text!  = String(record.valueForKey("medDosage")!)
@@ -108,7 +108,6 @@ class MedicineViewController: UIViewController {
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath){
         if editingStyle == .Delete{
-            
             //IF search bar is being used
             if searchController.active && searchController.searchBar.text != "" {
                deleteData([searchMeds[indexPath.row].recordID])
@@ -117,7 +116,6 @@ class MedicineViewController: UIViewController {
                 deleteData([medicineList[indexPath.row].recordID])
                 medicineList.removeAtIndex(indexPath.row)
             }
-            
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
     }
@@ -142,6 +140,27 @@ class MedicineViewController: UIViewController {
 
     
     
+    //Segue to ViewMedicineController
+    //Pass CKRecord of chosen Medicine
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showMedicineSegue"
+        {
+            if let indexPath = self.tableView.indexPathForSelectedRow{
+                let medDetail: CKRecord
+                
+                if searchController.active && searchController.searchBar.text != "" {
+                    medDetail = searchMeds[indexPath.row]
+                }else{
+                    medDetail = medicineList[indexPath.row]
+                }
+                let controller: ViewMedicineController = segue.destinationViewController as! ViewMedicineController
+                controller.medDetail.append(medDetail)
+            }
+        }
+    }
+    
+    
+    
     
     func loadData(){
         
@@ -155,7 +174,7 @@ class MedicineViewController: UIViewController {
                 print(error)
             }else{
                     for medicine in medicines!{
-                                self.medicineList.append(medicine)
+                    self.medicineList.append(medicine)
                     }
                     print(self.medicineList.count)
                     NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
