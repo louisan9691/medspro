@@ -114,7 +114,7 @@ class AddMedicineController: UIViewController, addDayDelegate, UINavigationContr
     
     //Save data button
     @IBAction func saveButton(sender: AnyObject) {
-        if (medNameLabel.text!.isEmpty) || (medDosageLabel.text!.isEmpty){
+        if (medNameLabel.text!.isEmpty) || (medDosageLabel.text!.isEmpty) || (reminder.isEmpty){
             let alertController =  UIAlertController(title: "Missing Field", message: "Please enter you medicine details", preferredStyle: UIAlertControllerStyle.Alert)
             
             alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))

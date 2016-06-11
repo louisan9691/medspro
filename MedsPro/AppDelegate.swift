@@ -16,10 +16,62 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-      
         
+        //Register notification
+        let notificationSettings = UIUserNotificationSettings(forTypes: [.Badge, .Alert, .Sound], categories: nil)
+        UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
+        
+        self.createLocalNotification()
         return true
     }
+    
+    
+    //Setup layout of notification
+    //Setup when it fires
+    func createLocalNotification(){
+        let localNotification = UILocalNotification()
+        localNotification.fireDate = NSDate(timeIntervalSinceNow: 10)
+        localNotification.applicationIconBadgeNumber = 0
+        localNotification.soundName = UILocalNotificationDefaultSoundName
+        
+        localNotification.userInfo = ["message" : "MedsPro Reminder"]
+        localNotification.alertBody = " Hey, Time To Take Your Medicine"
+  
+        UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
+    }
+    
+  
+    //When user clicks on the notification, method below gets called
+    func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+        if application.applicationState == .Active{
+            //inide the app
+        }
+        
+        self.takeActionWithNotification(notification)
+        
+    }
+    
+    //Add action into alert
+    func takeActionWithNotification(localNotification: UILocalNotification){
+        let notificationMessage = localNotification.userInfo!["message"] as! String
+        let alertController = UIAlertController(title: "", message: notificationMessage, preferredStyle: .Alert)
+        let reminderMeLaterAction = UIAlertAction(title: "Reminder me later", style: .Default, handler: nil)
+        let okAction = UIAlertAction (title: "OK", style: .Default) {(action) -> Void in
+            //let tabBarController = self.window?.rootViewController
+            //tabBarController.selectedIndex = 0
+        }
+        
+        alertController.addAction(reminderMeLaterAction)
+        alertController.addAction(okAction)
+        
+        self.window?.rootViewController?.presentViewController(alertController, animated: true, completion: nil)
+        
+    }
+    
+    
+    
+    
+    
 
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

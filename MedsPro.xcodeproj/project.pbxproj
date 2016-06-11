@@ -172,9 +172,9 @@
 				FC8D7C781CF2093100FB5E53 /* PhotoViewController.swift */,
 				FC8D7C7A1CF20C4C00FB5E53 /* PhotoCell.swift */,
 				FC769E841D081113006A96CF /* MedicineCell.swift */,
+				FC769E861D0AD69E006A96CF /* ViewMedicineController.swift */,
 				FC8D7C961CF37C6B00FB5E53 /* SideMenu */,
 				FC8D7C7C1CF33EAD00FB5E53 /* SWRevealViewController */,
-				FC769E861D0AD69E006A96CF /* ViewMedicineController.swift */,
 			);
 			path = MedsPro;
 			sourceTree = "<group>";

@@ -65,10 +65,11 @@ class ScheduleViewController: UIViewController {
         var pills: Int = 0
         var total: Int
         
+        
         //Check if number of pills is valid
         // If not, let total pill left is 0
         // If it is valid, (no of pills) - (dosage)
-        if medDetail.objectForKey("medNumberOfPills") == nil {
+        if medDetail.objectForKey("medNumberOfPills") == nil || medDetail.objectForKey("medNumberOfPills") as! Int == 0 {
             total = 0
         }else{
             pills = medDetail.objectForKey("medNumberOfPills") as! Int
@@ -103,6 +104,7 @@ class ScheduleViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         //Click menu button to slide out side menu
         if self.revealViewController() != nil{
