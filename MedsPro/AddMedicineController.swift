@@ -147,8 +147,8 @@ class AddMedicineController: UIViewController, addDayDelegate, UINavigationContr
                     let imageURL = NSURL.fileURLWithPath(file!)
                     let imageAsset = CKAsset(fileURL: imageURL)
                     newMedicine["medImage"] = imageAsset
-                    
-                    
+                }
+                
                     publicDB.saveRecord(newMedicine, completionHandler: {(record:CKRecord?, error:NSError?) -> Void in
                         if error == nil{
                             print("Medicine is inserted into the database")
@@ -160,7 +160,7 @@ class AddMedicineController: UIViewController, addDayDelegate, UINavigationContr
                             self.presentViewController(alertController, animated: true, completion: nil)
                         }
                     })
-                }
+                
             }
             
             self.navigationController!.popViewControllerAnimated(true)
