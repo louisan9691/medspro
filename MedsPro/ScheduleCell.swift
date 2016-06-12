@@ -10,6 +10,8 @@ import UIKit
 
 class ScheduleCell: UITableViewCell {
 
+   
+    @IBOutlet weak var refill: UIButton!
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var medNameLabel: UILabel!
     @IBOutlet weak var medNoOfPillsLabel: UILabel!

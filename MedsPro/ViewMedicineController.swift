@@ -215,7 +215,9 @@ class ViewMedicineController: UIViewController, UIImagePickerControllerDelegate,
                 let photo = self.medDetail.first!.objectForKey("medImage") as! CKAsset
                 let image = UIImage(contentsOfFile: photo.fileURL.path!)
                 self.medImage.image = image
+                 self.photoList.addObject(image!)
             }
+           
         }
     }
     

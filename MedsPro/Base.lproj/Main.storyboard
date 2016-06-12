@@ -46,6 +46,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="560" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z75-gO-goD">
+                                                    <rect key="frame" x="237" y="6" width="86" height="32"/>
+                                                    <state key="normal" image="warning"/>
+                                                </button>
                                                 <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7ga-tK-fao">
                                                     <rect key="frame" x="253" y="6" width="43" height="32"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -73,6 +77,7 @@
                                             <outlet property="doneButton" destination="7ga-tK-fao" id="Ohc-as-fGK"/>
                                             <outlet property="medNameLabel" destination="nyZ-F1-UTx" id="97t-NC-Mfx"/>
                                             <outlet property="medNoOfPillsLabel" destination="dGC-eo-It9" id="xqn-xv-yv9"/>
+                                            <outlet property="refill" destination="z75-gO-goD" id="PMf-Vd-DZb"/>
                                             <segue destination="VpO-aK-sgM" kind="show" identifier="viewMedicineSegue" id="yIL-xe-Ear"/>
                                         </connections>
                                     </tableViewCell>
@@ -2708,6 +2713,7 @@
         <image name="addUser" width="32" height="32"/>
         <image name="picture" width="32" height="32"/>
         <image name="share-file-2" width="32" height="32"/>
+        <image name="warning" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="bm2-fr-lnj"/>

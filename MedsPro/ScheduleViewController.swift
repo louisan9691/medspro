@@ -76,7 +76,10 @@ class ScheduleViewController: UIViewController {
             pills = medDetail.objectForKey("medNumberOfPills") as! Int
             total = pills - dosage
         }
-            print (total)
+        
+        if total < 0 {
+            total = 0
+        }
         
             //Update number of pills
             medDetail.setObject(total, forKey: "medNumberOfPills")
@@ -210,62 +213,105 @@ class ScheduleViewController: UIViewController {
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
         let cellIdentifier = "ScheduleCell"
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath:  indexPath) as! ScheduleCell
-      
         let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "dd MMMM, yyyy, hh:mm a"
+        dateFormatter.dateFormat = "hh:mm a"
 
         switch segmentedControlOutlet.selectedSegmentIndex {
         case 0:
+            cell.refill.hidden = true
             let record: CKRecord = Monday[indexPath.row]
             cell.medNameLabel.text! = String(record.valueForKey("medName")!)
             cell.medNoOfPillsLabel.text! = String(dateFormatter.stringFromDate(record.valueForKey("Time") as! NSDate))
-            
+            if (record.objectForKey("medNumberOfPills") as! Int) == 0 {
+            cell.refill.hidden = false
+            cell.doneButton.hidden = true
+            }else{
+                cell.doneButton.hidden = false
+            }
             //get indexPath for a button
             cell.doneButton.tag = indexPath.row
             cell.doneButton.addTarget(self, action: #selector(doneButton), forControlEvents: UIControlEvents.TouchUpInside)
             break
         case 1:
+            cell.refill.hidden = true
             let record: CKRecord = Tuesday[indexPath.row]
             cell.medNameLabel.text! = String(record.valueForKey("medName")!)
             cell.medNoOfPillsLabel.text! = String(dateFormatter.stringFromDate(record.valueForKey("Time") as! NSDate))
+            
+            // Check if no of pills is = 0, show refill logo
+            if (record.objectForKey("medNumberOfPills") as! Int) == 0 {
+                cell.refill.hidden = false
+                cell.doneButton.hidden = true
+            }
             cell.doneButton.tag = indexPath.row
             cell.doneButton.addTarget(self, action: #selector(doneButton), forControlEvents: UIControlEvents.TouchUpInside)
             break
         case 2:
+            cell.refill.hidden = true
             let record: CKRecord = Wednesday[indexPath.row]
             cell.medNameLabel.text! = String(record.valueForKey("medName")!)
             cell.medNoOfPillsLabel.text! = String(dateFormatter.stringFromDate(record.valueForKey("Time") as! NSDate))
+            // Check if no of pills is = 0, show refill logo
+            if (record.objectForKey("medNumberOfPills") as! Int) == 0 {
+                cell.refill.hidden = false
+                cell.doneButton.hidden = true
+            }else{
+                cell.doneButton.hidden = false
+            }
             cell.doneButton.tag = indexPath.row
             cell.doneButton.addTarget(self, action: #selector(doneButton), forControlEvents: UIControlEvents.TouchUpInside)
             break
         case 3:
+            cell.refill.hidden = true
             let record: CKRecord = Thursday[indexPath.row]
             cell.medNameLabel.text! = String(record.valueForKey("medName")!)
             cell.medNoOfPillsLabel.text! = String(dateFormatter.stringFromDate(record.valueForKey("Time") as! NSDate))
+            // Check if no of pills is = 0, show refill logo
+            if (record.objectForKey("medNumberOfPills") as! Int) == 0 {
+                cell.refill.hidden = false
+                cell.doneButton.hidden = true
+            }
             cell.doneButton.tag = indexPath.row
             cell.doneButton.addTarget(self, action: #selector(doneButton), forControlEvents: UIControlEvents.TouchUpInside)
             break
         case 4:
+            cell.refill.hidden = true
             let record: CKRecord = Friday[indexPath.row]
             cell.medNameLabel.text! = String(record.valueForKey("medName")!)
             cell.medNoOfPillsLabel.text! = String(dateFormatter.stringFromDate(record.valueForKey("Time") as! NSDate))
+            // Check if no of pills is = 0, show refill logo
+            if (record.objectForKey("medNumberOfPills") as! Int) == 0 {
+                cell.refill.hidden = false
+                cell.doneButton.hidden = true
+            }
             cell.doneButton.tag = indexPath.row
             cell.doneButton.addTarget(self, action: #selector(doneButton), forControlEvents: UIControlEvents.TouchUpInside)
             break
         case 5:
+            cell.refill.hidden = true
             let record: CKRecord = Saturday[indexPath.row]
             cell.medNameLabel.text! = String(record.valueForKey("medName")!)
             cell.medNoOfPillsLabel.text! = String(dateFormatter.stringFromDate(record.valueForKey("Time") as! NSDate))
+            // Check if no of pills is = 0, show refill logo
+            if (record.objectForKey("medNumberOfPills") as! Int) == 0 {
+                cell.refill.hidden = false
+                cell.doneButton.hidden = true
+            }
             cell.doneButton.tag = indexPath.row
             cell.doneButton.addTarget(self, action: #selector(doneButton), forControlEvents: UIControlEvents.TouchUpInside)
             break
         case 6:
+            cell.refill.hidden = true
             let record: CKRecord = Sunday[indexPath.row]
             cell.medNameLabel.text! = String(record.valueForKey("medName")!)
             cell.medNoOfPillsLabel.text! = String(dateFormatter.stringFromDate(record.valueForKey("Time") as! NSDate))
+            // Check if no of pills is = 0, show refill logo
+            if (record.objectForKey("medNumberOfPills") as! Int) == 0 {
+                cell.refill.hidden = false
+                cell.doneButton.hidden = true
+            }
             cell.doneButton.tag = indexPath.row
             cell.doneButton.addTarget(self, action: #selector(doneButton), forControlEvents: UIControlEvents.TouchUpInside)
             break
